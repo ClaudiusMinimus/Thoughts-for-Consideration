@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url('./resurrection.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: black; /* Optional: improve readability against background */
+}
+#output {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 5px;
+    white-space: pre-wrap;
+    background-color: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
+    color: black; /* Change text color to black for better readability */
+}
+.letter {
+    font-weight: bold;
+    font-size: 24px;
+}
+hr {
+    margin: 20px 0;
+    border: none;
+    height: 2px;
+    background-color: rgba(255,255,255,0.3);
+}
