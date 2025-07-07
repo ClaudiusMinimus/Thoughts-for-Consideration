@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Template and UI Guide for Phrase Set Export</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 2em; background: #f9f9f9; color: #222; }
+    h1, h2, h3 { color: #2a4d69; }
+    code, pre { background: #f4f4f4; border-radius: 4px; padding: 2px 6px; font-size: 1em; }
+    pre { padding: 1em; overflow-x: auto; }
+    ul, ol { margin-left: 2em; }
+    section { margin-bottom: 2em; }
+    hr { border: none; border-top: 1px solid #ddd; margin: 2em 0; }
+    .optional { color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>SVG Template and UI Guide for Phrase Set Export</h1>
+
+  <section>
+    <h2>1. Creating an SVG Template (Inkscape or Similar)</h2>
+    <h3>A. Design Your Template</h3>
+    <ul>
+      <li>Open Inkscape (or your preferred SVG editor).</li>
+      <li>Design your layout for a single phrase entry (or for a full set, as desired).</li>
+      <li>Use <strong>text objects</strong> for each field you want to populate (e.g., Letter, Title, Reference, Phrase, ReferenceURL).</li>
+    </ul>
+    <h3>B. Use Placeholders</h3>
+    <ul>
+      <li>In each text object, use a unique placeholder wrapped in curly braces, e.g.:</li>
+      <ul>
+        <li><code>{Letter}</code></li>
+        <li><code>{Title}</code></li>
+        <li><code>{Reference}</code></li>
+        <li><code>{Phrase}</code></li>
+        <li><code>{ReferenceURL}</code></li>
+      </ul>
+      <li>Style and position these placeholders as you want them to appear in the final PDF.</li>
+    </ul>
+    <h3>C. Save Your Template</h3>
+    <ul>
+      <li>Save your file as <code>template.svg</code> (or any name you prefer).</li>
+      <li>Make sure the SVG is <strong>plain SVG</strong> (not Inkscape SVG) for best compatibility.</li>
+    </ul>
+    <h3>D. Example SVG Snippet</h3>
+    <pre><code>&lt;text x="20" y="40" font-size="24"&gt;{Letter}&lt;/text&gt;
+&lt;text x="60" y="40" font-size="24"&gt;{Title}&lt;/text&gt;
+&lt;text x="20" y="80" font-size="16"&gt;{Reference}&lt;/text&gt;
+&lt;text x="20" y="120" font-size="14"&gt;{Phrase}&lt;/text&gt;
+&lt;text x="20" y="160" font-size="12"&gt;{ReferenceURL}&lt;/text&gt;</code></pre>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>2. UI Requirements for End Users</h2>
+    <h3>A. Phrase Set Selection and Generation</h3>
+    <ul>
+      <li>User selects a phrase set (e.g., Original, Christlike Living, etc.).</li>
+      <li>User enters a name (must contain at least one alphabetical character).</li>
+      <li>User clicks <strong>Generate</strong> to display the personalized phrase set.</li>
+    </ul>
+    <h3>B. Download Options</h3>
+    <ul>
+      <li>After generating, user sees download options:</li>
+      <ul>
+        <li><strong>CSV</strong> (enabled)</li>
+        <li><strong>TXT, ODT, DOCX</strong> (disabled for now)</li>
+        <li><strong>SVG/PDF</strong> (to be enabled when SVG template is supported)</li>
+      </ul>
+    </ul>
+    <h3>C. SVG/PDF Export Flow</h3>
+    <ul>
+      <li>User clicks <strong>Download SVG</strong> or <strong>Download PDF</strong> (when available).</li>
+      <li>The app:
+        <ol>
+          <li>Loads the SVG template.</li>
+          <li>Replaces all placeholders with the actual phrase data for each letter.</li>
+          <li>(If PDF) Converts the populated SVG to PDF.</li>
+          <li>Triggers a download for the user.</li>
+        </ol>
+      </li>
+    </ul>
+    <h3>D. User Customization <span class="optional">(Optional)</span></h3>
+    <ul>
+      <li>User can select a different phrase for each letter from alternate sets.</li>
+      <li>The exported SVG/PDF will reflect these customizations.</li>
+    </ul>
+    <h3>E. Session Saving <span class="optional">(Optional)</span></h3>
+    <ul>
+      <li>User can save their generated output and template selection to localStorage.</li>
+      <li>User can restore their session on a future visit.</li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>3. Tips for Template Designers</h2>
+    <ul>
+      <li>Use clear, unique placeholders for each field.</li>
+      <li>Avoid overlapping text objects.</li>
+      <li>Test your SVG by opening it in a browser to ensure placeholders are visible.</li>
+      <li>Keep the SVG simple for best compatibility with automated scripts.</li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>4. Example Workflow</h2>
+    <ol>
+      <li>Designer creates <code>template.svg</code> with placeholders.</li>
+      <li>User generates phrases and customizes as desired.</li>
+      <li>User clicks <strong>Download PDF</strong>.</li>
+      <li>App fills in the SVG, converts to PDF, and downloads the result.</li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>5. Future Enhancements</h2>
+    <ul>
+      <li>Support for multiple SVG templates.</li>
+      <li>User-uploaded SVG templates.</li>
+      <li>Advanced formatting (fonts, colors, images).</li>
+      <li>Batch export for multiple names.</li>
+    </ul>
+  </section>
+
+</body>
+</html> 
