@@ -141,71 +141,75 @@ function switchLetterPhrase(letter, selectedSet) {
 function showPhrases(event) {
     event.preventDefault(); // Prevent default form submission behavior
     const input = document.getElementById('wordInput').value.trim();
-    if (input.length > 0) {
-        const words = input.split(' ');
-        let output = '';
-        words.forEach((word, index) => {
-            for (let letter of word) {
-                if (letter.match(/[a-zA-Z]/)) {
-                    const phraseData = getPhraseForLetter(letter);
-                    if (phraseData) {
-                        const allTitles = getAllTitlesForLetter(letter);
+    // Validate: at least one alphabetical character
+    if (!/[a-zA-Z]/.test(input)) {
+        document.getElementById('output').innerHTML = '<em>Please enter a name with at least one alphabetical character.</em>';
+        document.getElementById('download-section-top').style.display = 'none';
+        return;
+    }
+    const words = input.split(' ');
+    let output = '';
+    words.forEach((word, index) => {
+        for (let letter of word) {
+            if (letter.match(/[a-zA-Z]/)) {
+                const phraseData = getPhraseForLetter(letter);
+                if (phraseData) {
+                    const allTitles = getAllTitlesForLetter(letter);
+                    
+                    output += `<div class=\"phrase-entry\">`;
+                    output += `<span class=\"letter\">${phraseData.Letter}</span>`;
+                    
+                    if (phraseData.Title) {
+                        output += `<div class=\"phrase-header\">`;
+                        output += `<div class=\"phrase-title\">${phraseData.Title}</div>`;
                         
-                        output += `<div class="phrase-entry">`;
-                        output += `<span class="letter">${phraseData.Letter}</span>`;
-                        
-                        if (phraseData.Title) {
-                            output += `<div class="phrase-header">`;
-                            output += `<div class="phrase-title">${phraseData.Title}</div>`;
-                            
-                            // Add dropdown if there are multiple titles available
-                            if (allTitles.length > 1) {
-                                output += `<select class="title-dropdown" onchange="switchLetterPhrase('${letter}', this.value)">`;
-                                allTitles.forEach(titleInfo => {
-                                    const selected = titleInfo.set === currentPhraseSetName ? 'selected' : '';
-                                    const setLabel = titleInfo.set === 'original' ? 'Original' : 
-                                                   titleInfo.set === 'alternate' ? 'Alternate' : 
-                                                   titleInfo.set === 'scriptural' ? 'Scriptural' :
-                                                   titleInfo.set === 'topicalVirtues' ? 'Topical Virtues' : 'Topical Principles';
-                                    output += `<option value="${titleInfo.set}" ${selected}>${titleInfo.title} (${setLabel})</option>`;
-                                });
-                                output += `</select>`;
-                            }
-                            
-                            output += `</div>`;
+                        // Add dropdown if there are multiple titles available
+                        if (allTitles.length > 1) {
+                            output += `<select class=\"title-dropdown\" onchange=\"switchLetterPhrase('${letter}', this.value)\">`;
+                            allTitles.forEach(titleInfo => {
+                                const selected = titleInfo.set === currentPhraseSetName ? 'selected' : '';
+                                const setLabel = titleInfo.set === 'original' ? 'Original' : 
+                                               titleInfo.set === 'alternate' ? 'Christlike Living' : 
+                                               titleInfo.set === 'scriptural' ? 'Gospel Principles' :
+                                               titleInfo.set === 'topicalVirtues' ? 'Topical Virtues' : 'Topical Principles';
+                                output += `<option value=\"${titleInfo.set}\" ${selected}>${titleInfo.title} (${setLabel})</option>`;
+                            });
+                            output += `</select>`;
                         }
                         
-                        if (phraseData.Reference) {
-                            if (phraseData.ReferenceURL) {
-                                output += `<div class="phrase-reference"><a href="${phraseData.ReferenceURL}" target="_blank">${phraseData.Reference}</a></div>`;
-                            } else {
-                                output += `<div class="phrase-reference">${phraseData.Reference}</div>`;
-                            }
-                        }
-                        
-                        output += `<div class="phrase-text">${formatMarkdown(phraseData.Phrase)}</div>`;
-                        output += `</div>`;
-                    } else {
-                        output += `<div class="phrase-entry">`;
-                        output += `<span class="letter">${letter.toUpperCase()}</span>`;
-                        output += `<div class="phrase-text"><em>No phrase found for '${letter.toUpperCase()}'</em></div>`;
                         output += `</div>`;
                     }
+                    
+                    if (phraseData.Reference) {
+                        if (phraseData.ReferenceURL) {
+                            output += `<div class=\"phrase-reference\"><a href=\"${phraseData.ReferenceURL}\" target=\"_blank\">${phraseData.Reference}</a></div>`;
+                        } else {
+                            output += `<div class=\"phrase-reference\">${phraseData.Reference}</div>`;
+                        }
+                    }
+                    
+                    output += `<div class=\"phrase-text\">${formatMarkdown(phraseData.Phrase)}</div>`;
+                    output += `</div>`;
+                } else {
+                    output += `<div class=\"phrase-entry\">`;
+                    output += `<span class=\"letter\">${letter.toUpperCase()}</span>`;
+                    output += `<div class=\"phrase-text\"><em>No phrase found for '${letter.toUpperCase()}'</em></div>`;
+                    output += `</div>`;
                 }
             }
-            if (index < words.length - 1) {
-                output += '<hr>';
-            }
-        });
-        document.getElementById('output').innerHTML = output;
-    } else {
-        document.getElementById('output').innerHTML = '<em>Please enter a name.</em>';
-    }
+        }
+        if (index < words.length - 1) {
+            output += '<hr>';
+        }
+    });
+    document.getElementById('output').innerHTML = output;
+    document.getElementById('download-section-top').style.display = '';
 }
 
 function clearInput() {
     document.getElementById('wordInput').value = ''; // Clear the input field
     document.getElementById('output').innerHTML = ''; // Clear the output area
+    document.getElementById('download-section-top').style.display = 'none';
 }
 
 function downloadPhrases(format) {
