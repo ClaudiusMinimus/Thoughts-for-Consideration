@@ -222,10 +222,10 @@ const alternatePhrases = {
     },
     "F": {
         "Letter": "F",
-        "Title": "Faith",
-        "Reference": "Hebrews 11:1",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/heb/11?lang=eng",
-        "Phrase": "Now faith is the substance of things hoped for, the evidence of things not seen."
+        "Title": "Forgive Freely",
+        "Reference": "Ephesians 4:32",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/eph/4?lang=eng",
+        "Phrase": "And be ye kind one to another, tenderhearted, forgiving one another, even as God for Christ's sake hath forgiven you."
     },
     "G": {
         "Letter": "G",
@@ -236,17 +236,17 @@ const alternatePhrases = {
     },
     "H": {
         "Letter": "H",
-        "Title": "Hope",
-        "Reference": "Romans 15:13",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rom/15?lang=eng",
-        "Phrase": "Now the God of hope fill you with all joy and peace in believing, that ye may abound in hope, through the power of the Holy Ghost."
+        "Title": "Helpfulness",
+        "Reference": "Galatians 6:2",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/gal/6?lang=eng",
+        "Phrase": "Bear ye one another's burdens, and so fulfil the law of Christ."
     },
     "I": {
         "Letter": "I",
-        "Title": "I Am",
-        "Reference": "John 8:12",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/8?lang=eng",
-        "Phrase": "I am the light of the world: he that followeth me shall not walk in darkness, but shall have the light of life."
+        "Title": "Invite Others",
+        "Reference": "Matthew 4:19",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/4?lang=eng",
+        "Phrase": "And he saith unto them, Follow me, and I will make you fishers of men."
     },
     "J": {
         "Letter": "J",
@@ -300,9 +300,9 @@ const alternatePhrases = {
     "Q": {
         "Letter": "Q",
         "Title": "Quiet",
-        "Reference": "Isaiah 30:15",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/isa/30?lang=eng",
-        "Phrase": "In quietness and in confidence shall be your strength."
+        "Reference": "1 Thessalonians 4:11",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/1-thes/4?lang=eng",
+        "Phrase": "And that ye study to be quiet, and to do your own business, and to work with your own hands, as we commanded you."
     },
     "R": {
         "Letter": "R",
@@ -348,24 +348,24 @@ const alternatePhrases = {
     },
     "X": {
         "Letter": "X",
-        "Title": "Christ",
-        "Reference": "Acts 4:12",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/acts/4?lang=eng",
-        "Phrase": "Neither is there salvation in any other: for there is none other name under heaven given among men, whereby we must be saved."
+        "Title": "Christ (as eXample)",
+        "Reference": "1 Peter 2:21",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/1-pet/2?lang=eng",
+        "Phrase": "For even hereunto were ye called: because Christ also suffered for us, leaving us an example, that ye should follow his steps."
     },
     "Y": {
         "Letter": "Y",
         "Title": "Yield",
-        "Reference": "Romans 6:13",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rom/6?lang=eng",
-        "Phrase": "Neither yield ye your members as instruments of unrighteousness unto sin: but yield yourselves unto God."
+        "Reference": "Galatians 5:25",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/gal/5?lang=eng",
+        "Phrase": "If we live in the Spirit, let us also walk in the Spirit."
     },
     "Z": {
         "Letter": "Z",
         "Title": "Zeal",
-        "Reference": "Revelation 3:19",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rev/3?lang=eng",
-        "Phrase": "As many as I love, I rebuke and chasten: be zealous therefore, and repent."
+        "Reference": "Titus 2:14",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/titus/2?lang=eng",
+        "Phrase": "...a peculiar people, zealous of good works."
     }
 };
 
@@ -436,10 +436,10 @@ const scripturalPhrases = {
     },
     "J": {
         "Letter": "J",
-        "Title": "Joy",
-        "Reference": "2 Nephi 2:25",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/2-ne/2?lang=eng",
-        "Phrase": "Adam fell that men might be; and men are, that they might have joy."
+        "Title": "Justice",
+        "Reference": "Micah 6:8",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/micah/6?lang=eng",
+        "Phrase": "He hath shewed thee, O man, what is good; and what doth the Lord require of thee, but to do justly, and to love mercy, and to walk humbly with thy God?"
     },
     "K": {
         "Letter": "K",
@@ -450,105 +450,105 @@ const scripturalPhrases = {
     },
     "L": {
         "Letter": "L",
-        "Title": "Love",
-        "Reference": "1 Corinthians 13:13",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/1-cor/13?lang=eng",
-        "Phrase": "And now abideth faith, hope, charity, these three; but the greatest of these is charity."
+        "Title": "Light",
+        "Reference": "John 8:12",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/8?lang=eng",
+        "Phrase": "Then spake Jesus again unto them, saying, I am the light of the world: he that followeth me shall not walk in darkness, but shall have the light of life."
     },
     "M": {
         "Letter": "M",
-        "Title": "Meekness",
-        "Reference": "Mosiah 3:19",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/3?lang=eng",
-        "Phrase": "...becometh as a child, submissive, meek, humble, patient, full of love..."
+        "Title": "Mission",
+        "Reference": "Matthew 28:19",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/28?lang=eng",
+        "Phrase": "Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost."
     },
     "N": {
         "Letter": "N",
-        "Title": "Neighborliness",
-        "Reference": "Matthew 22:39",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/22?lang=eng",
-        "Phrase": "Thou shalt love thy neighbour as thyself."
+        "Title": "Offering",
+        "Reference": "Hebrews 13:15",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/heb/13?lang=eng",
+        "Phrase": "By him therefore let us offer the sacrifice of praise to God continually, that is, the fruit of our lips giving thanks to his name."
     },
     "O": {
         "Letter": "O",
-        "Title": "Obedience",
-        "Reference": "John 14:15",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/14?lang=eng",
-        "Phrase": "If ye love me, keep my commandments."
+        "Title": "Promise",
+        "Reference": "2 Peter 1:4",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/2-pet/1?lang=eng",
+        "Phrase": "Whereby are given unto us exceeding great and precious promises: that by these ye might be partakers of the divine nature, having escaped the corruption that is in the world through lust."
     },
     "P": {
         "Letter": "P",
-        "Title": "Patience",
-        "Reference": "James 1:4",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/james/1?lang=eng",
-        "Phrase": "But let patience have her perfect work, that ye may be perfect and entire, wanting nothing."
+        "Title": "Quest for Truth",
+        "Reference": "John 8:32",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/8?lang=eng",
+        "Phrase": "And ye shall know the truth, and the truth shall make you free."
     },
     "Q": {
         "Letter": "Q",
-        "Title": "Quietude (Peacefulness)",
-        "Reference": "Philippians 4:7",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/philip/4?lang=eng",
-        "Phrase": "And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus."
+        "Title": "Redemption",
+        "Reference": "Romans 3:24",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rom/3?lang=eng",
+        "Phrase": "Being justified freely by his grace through the redemption that is in Christ Jesus."
     },
     "R": {
         "Letter": "R",
-        "Title": "Repentance",
-        "Reference": "Acts 3:19",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/acts/3?lang=eng",
-        "Phrase": "Repent ye therefore, and be converted, that your sins may be blotted out..."
+        "Title": "Righteousness",
+        "Reference": "Matthew 6:33",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/6?lang=eng",
+        "Phrase": "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you."
     },
     "S": {
         "Letter": "S",
-        "Title": "Service",
-        "Reference": "Mosiah 2:17",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/2?lang=eng",
-        "Phrase": "...when ye are in the service of your fellow beings ye are only in the service of your God."
+        "Title": "Sanctification",
+        "Reference": "John 17:17",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/17?lang=eng",
+        "Phrase": "Sanctify them through thy truth: thy word is truth."
     },
     "T": {
         "Letter": "T",
-        "Title": "Testimony",
-        "Reference": "Revelation 12:11",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rev/12?lang=eng",
-        "Phrase": "And they overcame him by the blood of the Lamb, and by the word of their testimony..."
+        "Title": "Truth",
+        "Reference": "John 8:32",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/8?lang=eng",
+        "Phrase": "And ye shall know the truth, and the truth shall make you free."
     },
     "U": {
         "Letter": "U",
-        "Title": "Unity",
-        "Reference": "Mosiah 18:21",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/18?lang=eng",
-        "Phrase": "And he commanded them that there should be no contention one with another, but that they should look forward with one eye, having one faith and one baptism, having their hearts knit together in unity and in love one towards another."
+        "Title": "Understanding",
+        "Reference": "Proverbs 3:5-6",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/prov/3?lang=eng",
+        "Phrase": "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths."
     },
     "V": {
         "Letter": "V",
-        "Title": "Virtue",
-        "Reference": "Philippians 4:8",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/philip/4?lang=eng",
-        "Phrase": "If there be any virtue, and if there be any praise, think on these things."
+        "Title": "Vision",
+        "Reference": "Proverbs 29:18",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/prov/29?lang=eng",
+        "Phrase": "Where there is no vision, the people perish: but he that keepeth the law, happy is he."
     },
     "W": {
         "Letter": "W",
-        "Title": "Wisdom",
-        "Reference": "James 1:5",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/james/1?lang=eng",
-        "Phrase": "If any of you lack wisdom, let him ask of God..."
+        "Title": "Worship",
+        "Reference": "John 4:24",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/4?lang=eng",
+        "Phrase": "God is a Spirit: and they that worship him must worship him in spirit and in truth."
     },
     "X": {
         "Letter": "X",
-        "Title": "eXample (Being an Example)",
-        "Reference": "1 Timothy 4:12",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/1-tim/4?lang=eng",
-        "Phrase": "...be thou an example of the believers, in word, in conversation, in charity, in spirit, in faith, in purity."
+        "Title": "eXamine",
+        "Reference": "2 Corinthians 13:5",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/2-cor/13?lang=eng",
+        "Phrase": "Examine yourselves, whether ye be in the faith; prove your own selves. Know ye not your own selves, how that Jesus Christ is in you, except ye be reprobates?"
     },
     "Y": {
         "Letter": "Y",
-        "Title": "Yielding to the Spirit",
-        "Reference": "Galatians 5:25",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/gal/5?lang=eng",
-        "Phrase": "If we live in the Spirit, let us also walk in the Spirit."
+        "Title": "Yearn for Righteousness",
+        "Reference": "Matthew 5:6",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/5?lang=eng",
+        "Phrase": "Blessed are they which do hunger and thirst after righteousness: for they shall be filled."
     },
     "Z": {
         "Letter": "Z",
-        "Title": "Zeal",
+        "Title": "Zest for Good Works",
         "Reference": "Titus 2:14",
         "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/titus/2?lang=eng",
         "Phrase": "...a peculiar people, zealous of good works."
@@ -594,38 +594,38 @@ const topicalVirtues = {
     },
     "F": {
         "Letter": "F",
-        "Title": "Faith",
-        "Reference": "Hebrews 11:1",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/heb/11?lang=eng",
-        "Phrase": "Now faith is the substance of things hoped for, the evidence of things not seen."
+        "Title": "Friendliness",
+        "Reference": "Proverbs 18:24",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/prov/18?lang=eng",
+        "Phrase": "A man that hath friends must shew himself friendly: and there is a friend that sticketh closer than a brother."
     },
     "G": {
         "Letter": "G",
-        "Title": "Grace",
-        "Reference": "2 Corinthians 12:9",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/2-cor/12?lang=eng",
-        "Phrase": "My grace is sufficient for thee: for my strength is made perfect in weakness."
+        "Title": "Goodness",
+        "Reference": "Galatians 5:22",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/gal/5?lang=eng",
+        "Phrase": "But the fruit of the Spirit is love, joy, peace, longsuffering, gentleness, goodness, faith."
     },
     "H": {
         "Letter": "H",
-        "Title": "Hope",
-        "Reference": "Romans 15:13",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rom/15?lang=eng",
-        "Phrase": "Now the God of hope fill you with all joy and peace in believing, that ye may abound in hope, through the power of the Holy Ghost."
+        "Title": "Humility",
+        "Reference": "James 4:10",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/james/4?lang=eng",
+        "Phrase": "Humble yourselves in the sight of the Lord, and he shall lift you up."
     },
     "I": {
         "Letter": "I",
-        "Title": "Integrity",
-        "Reference": "Proverbs 10:9",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/prov/10?lang=eng",
-        "Phrase": "He that walketh uprightly walketh surely: but he that perverteth his ways shall be known."
+        "Title": "Inspiration",
+        "Reference": "2 Timothy 3:16",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/2-tim/3?lang=eng",
+        "Phrase": "All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness."
     },
     "J": {
         "Letter": "J",
-        "Title": "Joy",
-        "Reference": "Psalm 16:11",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/ps/16?lang=eng",
-        "Phrase": "Thou wilt shew me the path of life: in thy presence is fulness of joy; at thy right hand there are pleasures for evermore."
+        "Title": "Just",
+        "Reference": "Proverbs 21:15",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/prov/21?lang=eng",
+        "Phrase": "It is joy to the just to do judgment: but destruction shall be to the workers of iniquity."
     },
     "K": {
         "Letter": "K",
@@ -636,10 +636,10 @@ const topicalVirtues = {
     },
     "L": {
         "Letter": "L",
-        "Title": "Love",
-        "Reference": "1 John 4:7-8",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/1-jn/4?lang=eng",
-        "Phrase": "Beloved, let us love one another: for love is of God; and every one that loveth is born of God, and knoweth God. He that loveth not knoweth not God; for God is love."
+        "Title": "Longsuffering",
+        "Reference": "Colossians 3:12",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/col/3?lang=eng",
+        "Phrase": "Put on therefore, as the elect of God, holy and beloved, bowels of mercies, kindness, humbleness of mind, meekness, longsuffering."
     },
     "M": {
         "Letter": "M",
@@ -699,10 +699,10 @@ const topicalVirtues = {
     },
     "U": {
         "Letter": "U",
-        "Title": "Unity",
-        "Reference": "Ephesians 4:3",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/eph/4?lang=eng",
-        "Phrase": "Endeavouring to keep the unity of the Spirit in the bond of peace."
+        "Title": "Uprightness",
+        "Reference": "Psalm 25:21",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/ps/25?lang=eng",
+        "Phrase": "Let integrity and uprightness preserve me; for I wait on thee."
     },
     "V": {
         "Letter": "V",
@@ -899,24 +899,24 @@ const topicalPrinciples = {
     },
     "W": {
         "Letter": "W",
-        "Title": "Word",
-        "Reference": "John 1:1",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/1?lang=eng",
-        "Phrase": "In the beginning was the Word, and the Word was with God, and the Word was God."
+        "Title": "Worship",
+        "Reference": "John 4:24",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/4?lang=eng",
+        "Phrase": "God is a Spirit: and they that worship him must worship him in spirit and in truth."
     },
     "X": {
         "Letter": "X",
-        "Title": "eXaltation",
-        "Reference": "D&C 132:19",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/132?lang=eng",
-        "Phrase": "And again, verily I say unto you, if a man marry a wife by my word, which is my law, and by the new and everlasting covenant, and it is sealed unto them by the Holy Spirit of promise, by him who is anointed, unto whom I have appointed this power and the keys of this priesthood."
+        "Title": "eXample",
+        "Reference": "1 Timothy 4:12",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/1-tim/4?lang=eng",
+        "Phrase": "Let no man despise thy youth; but be thou an example of the believers, in word, in conversation, in charity, in spirit, in faith, in purity."
     },
     "Y": {
         "Letter": "Y",
         "Title": "Yield",
-        "Reference": "Mosiah 3:19",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/mosiah/3?lang=eng",
-        "Phrase": "For the natural man is an enemy to God, and has been from the fall of Adam, and will be, forever and ever, unless he yields to the enticings of the Holy Spirit, and putteth off the natural man and becometh a saint through the atonement of Christ the Lord."
+        "Reference": "Romans 6:13",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rom/6?lang=eng",
+        "Phrase": "Neither yield ye your members as instruments of unrighteousness unto sin: but yield yourselves unto God, as those that are alive from the dead, and your members as instruments of righteousness unto God."
     },
     "Z": {
         "Letter": "Z",
