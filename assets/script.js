@@ -10,6 +10,10 @@ function updatePhraseSet() {
         currentPhraseSet = alternatePhrases;
     } else if (selectedSet === 'scriptural') {
         currentPhraseSet = scripturalPhrases;
+    } else if (selectedSet === 'topicalVirtues') {
+        currentPhraseSet = topicalVirtues;
+    } else if (selectedSet === 'topicalPrinciples') {
+        currentPhraseSet = topicalPrinciples;
     }
     // Clear output when switching phrase sets
     document.getElementById('output').innerHTML = '';
@@ -59,6 +63,24 @@ function getAllTitlesForLetter(letter) {
         });
     }
     
+    // Get title from topical virtues
+    if (topicalVirtues[upperLetter]) {
+        titles.push({
+            set: 'topicalVirtues',
+            title: topicalVirtues[upperLetter].Title,
+            data: topicalVirtues[upperLetter]
+        });
+    }
+    
+    // Get title from topical principles
+    if (topicalPrinciples[upperLetter]) {
+        titles.push({
+            set: 'topicalPrinciples',
+            title: topicalPrinciples[upperLetter].Title,
+            data: topicalPrinciples[upperLetter]
+        });
+    }
+    
     return titles;
 }
 
@@ -72,6 +94,10 @@ function switchLetterPhrase(letter, selectedSet) {
         newData = alternatePhrases[upperLetter];
     } else if (selectedSet === 'scriptural' && scripturalPhrases[upperLetter]) {
         newData = scripturalPhrases[upperLetter];
+    } else if (selectedSet === 'topicalVirtues' && topicalVirtues[upperLetter]) {
+        newData = topicalVirtues[upperLetter];
+    } else if (selectedSet === 'topicalPrinciples' && topicalPrinciples[upperLetter]) {
+        newData = topicalPrinciples[upperLetter];
     }
     
     if (newData) {
@@ -138,7 +164,9 @@ function showPhrases(event) {
                                 allTitles.forEach(titleInfo => {
                                     const selected = titleInfo.set === currentPhraseSetName ? 'selected' : '';
                                     const setLabel = titleInfo.set === 'original' ? 'Original' : 
-                                                   titleInfo.set === 'alternate' ? 'Alternate' : 'Scriptural';
+                                                   titleInfo.set === 'alternate' ? 'Alternate' : 
+                                                   titleInfo.set === 'scriptural' ? 'Scriptural' :
+                                                   titleInfo.set === 'topicalVirtues' ? 'Topical Virtues' : 'Topical Principles';
                                     output += `<option value="${titleInfo.set}" ${selected}>${titleInfo.title} (${setLabel})</option>`;
                                 });
                                 output += `</select>`;
