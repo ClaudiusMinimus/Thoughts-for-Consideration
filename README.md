@@ -22,4 +22,14 @@ You can view the live app here:
 
 ---
 
+## 🌐 GitHub Pages (Live App)
+
+You can view the live app via GitHub Pages here:
+
+- [https://claudiusminimus.github.io/Thoughts-for-Consideration/](https://claudiusminimus.github.io/Thoughts-for-Consideration/)
+
+> This is the official GitHub Pages deployment. If you don't see your latest changes, wait a minute or refresh.
+
+---
+
 Personal Name Acronym Builder Becoming Your Best Christian Self
