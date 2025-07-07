@@ -69,6 +69,13 @@ body {
     margin-bottom: 5px;
 }
 
+.phrase-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 5px;
+}
+
 .phrase-reference {
     font-style: italic;
     color: #7f8c8d;
@@ -94,4 +101,25 @@ hr {
     border: none;
     height: 2px;
     background-color: rgba(255,255,255,0.3);
+}
+
+.title-dropdown {
+    padding: 4px 8px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.title-dropdown:hover {
+    background-color: #d5dbdb;
+}
+
+.title-dropdown:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.3);
 }
