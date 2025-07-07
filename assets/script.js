@@ -207,3 +207,44 @@ function clearInput() {
     document.getElementById('wordInput').value = ''; // Clear the input field
     document.getElementById('output').innerHTML = ''; // Clear the output area
 }
+
+function downloadPhrases(format) {
+    if (format === 'csv') {
+        // Gather the current phrase set (with per-letter overrides if any)
+        // We'll use the currentPhraseSet and currentPhraseSetName
+        // If the user has selected any per-letter overrides, those are reflected in the DOM
+        // We'll extract the currently displayed phrases from the DOM for accuracy
+        const phraseEntries = document.querySelectorAll('.phrase-entry');
+        const rows = [['Letter', 'Title', 'Reference', 'Phrase', 'ReferenceURL']];
+        phraseEntries.forEach(entry => {
+            const letter = entry.querySelector('.letter')?.textContent || '';
+            const title = entry.querySelector('.phrase-title')?.textContent || '';
+            const referenceLink = entry.querySelector('.phrase-reference a');
+            let reference = '';
+            let referenceURL = '';
+            if (referenceLink) {
+                reference = referenceLink.textContent;
+                referenceURL = referenceLink.getAttribute('href');
+            } else {
+                // If not a link, get the plain text
+                reference = entry.querySelector('.phrase-reference')?.textContent || '';
+                referenceURL = '';
+            }
+            const phrase = entry.querySelector('.phrase-text')?.textContent || '';
+            rows.push([letter, title, reference, phrase, referenceURL]);
+        });
+        // Convert to CSV
+        const csvContent = rows.map(row => row.map(cell => '"' + (cell || '').replace(/"/g, '""') + '"').join(',')).join('\r\n');
+        // Download
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'phrases.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+    // TXT, ODT, DOCX: not implemented yet
+}
