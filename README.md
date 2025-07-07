@@ -2,7 +2,7 @@
 
 ---
 
-## 🚀 App Demo
+## [🚀 App Demo](https://claudiusminimus.github.io/Thoughts-for-Consideration/)
 
 You can view the live app here:
 
