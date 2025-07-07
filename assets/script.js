@@ -142,9 +142,17 @@ function showPhrases(event) {
     event.preventDefault(); // Prevent default form submission behavior
     const inputElem = document.getElementById('wordInput');
     const input = inputElem.value.trim();
-    // Validate: at least one alphabetical character
-    if (!/[a-zA-Z]/.test(input)) {
-        document.getElementById('output').innerHTML = '<em>Please enter a name in this field.</em>';
+    // Validate: only letters A-Z and a-z allowed
+    if (!/^[A-Za-z\s]+$/.test(input)) {
+        document.getElementById('output').innerHTML = '<em>Please enter a name using only letters A-Z and spaces.</em>';
+        document.getElementById('download-section-above').style.display = 'none';
+        document.getElementById('download-section-below').style.display = 'none';
+        inputElem.classList.add('input-error');
+        return;
+    }
+    // Additional validation: at least one letter
+    if (!/[A-Za-z]/.test(input)) {
+        document.getElementById('output').innerHTML = '<em>Please enter a name with at least one letter.</em>';
         document.getElementById('download-section-above').style.display = 'none';
         document.getElementById('download-section-below').style.display = 'none';
         inputElem.classList.add('input-error');
