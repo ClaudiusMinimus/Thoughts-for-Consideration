@@ -10,10 +10,20 @@
     <h1>Thoughts for Consideration:<br />Becoming My Best Christian Self</h1>
     <p>By Jim Subashe</p>
     <form id="phraseForm" onsubmit="showPhrases(event)">
-        <label for="wordInput" style="font-weight: bold;">Enter a name: </label>
-        <input type="text" id="wordInput" required>
-        <button type="submit">Generate</button> <!-- Button text changed to "Generate" -->
-        <button type="button" id="clearButton" onclick="clearInput()">Clear</button>
+        <div class="form-group">
+            <label for="phraseSet" style="font-weight: bold;">Select Phrase Set: </label>
+            <select id="phraseSet" onchange="updatePhraseSet()">
+                <option value="original">Original Phrases (by Jim Subashe)</option>
+                <option value="alternate">Alternate Phrases</option>
+                <option value="scriptural">Scriptural Phrases</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="wordInput" style="font-weight: bold;">Enter a name: </label>
+            <input type="text" id="wordInput" required>
+            <button type="submit">Generate</button> <!-- Button text changed to "Generate" -->
+            <button type="button" id="clearButton" onclick="clearInput()">Clear</button>
+        </div>
     </form>
     <div id="output"></div>
 

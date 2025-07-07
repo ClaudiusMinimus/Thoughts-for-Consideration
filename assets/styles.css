@@ -10,19 +10,85 @@ body {
     background-attachment: fixed;
     color: black; /* Optional: improve readability against background */
 }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: inline-block;
+    margin-right: 10px;
+    min-width: 120px;
+}
+
+.form-group select,
+.form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+}
+
 #output {
     margin-top: 20px;
     padding: 10px;
     border: 1px solid rgba(255,255,255,0.3);
     border-radius: 5px;
     white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.6;
     background-color: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
     color: black; /* Change text color to black for better readability */
 }
+
 .letter {
     font-weight: bold;
     font-size: 24px;
 }
+
+.phrase-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.phrase-reference {
+    font-style: italic;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+.phrase-reference a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.phrase-reference a:hover {
+    text-decoration: underline;
+}
+
+.phrase-text {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
 hr {
     margin: 20px 0;
     border: none;
