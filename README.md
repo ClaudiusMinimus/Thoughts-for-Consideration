@@ -6,9 +6,10 @@
 
 You can view the live app here:
 
-- [index.html](https://raw.githack.com/ClaudiusMinimus/Thoughts-for-Consideration/main/index.html)
+- [index.html (githack.com)](https://raw.githack.com/ClaudiusMinimus/Thoughts-for-Consideration/main/index.html)
+- [index.html (GitHub Pages)](https://claudiusminimus.github.io/Thoughts-for-Consideration/)
 
-> This also uses [githack.com](https://raw.githack.com/) for live HTML rendering. For a custom domain or official deployment, use GitHub Pages or another static host.
+> The first link uses [githack.com](https://raw.githack.com/) for live HTML rendering. The second is the official GitHub Pages deployment. If you don't see your latest changes on GitHub Pages, wait a minute or refresh.
 
 ---
 
