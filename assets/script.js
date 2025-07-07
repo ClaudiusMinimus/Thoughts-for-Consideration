@@ -145,7 +145,8 @@ function showPhrases(event) {
     // Validate: at least one alphabetical character
     if (!/[a-zA-Z]/.test(input)) {
         document.getElementById('output').innerHTML = '<em>Please enter a name in this field.</em>';
-        document.getElementById('download-section-top').style.display = 'none';
+        document.getElementById('download-section-above').style.display = 'none';
+        document.getElementById('download-section-below').style.display = 'none';
         inputElem.classList.add('input-error');
         return;
     }
@@ -206,13 +207,15 @@ function showPhrases(event) {
         }
     });
     document.getElementById('output').innerHTML = output;
-    document.getElementById('download-section-top').style.display = '';
+    document.getElementById('download-section-above').style.display = '';
+    document.getElementById('download-section-below').style.display = '';
 }
 
 function clearInput() {
     document.getElementById('wordInput').value = ''; // Clear the input field
     document.getElementById('output').innerHTML = ''; // Clear the output area
-    document.getElementById('download-section-top').style.display = 'none';
+    document.getElementById('download-section-above').style.display = 'none';
+    document.getElementById('download-section-below').style.display = 'none';
     document.getElementById('wordInput').classList.remove('input-error');
 }
 

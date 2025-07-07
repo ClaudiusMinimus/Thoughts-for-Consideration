@@ -27,14 +27,20 @@
             <button type="button" id="clearButton" onclick="clearInput()">Clear</button>
         </div>
     </form>
-    <div id="output"></div>
-
-    <div id="download-section-top" style="display:none">
+    <div id="download-section-above" style="display:none">
         <label style="font-weight: bold;">Download Phrase Set:</label>
-        <button id="download-csv-top" onclick="downloadPhrases('csv')">Download CSV</button>
-        <button id="download-txt-top" disabled>Download TXT (coming soon)</button>
-        <button id="download-odt-top" disabled>Download ODT (coming soon)</button>
-        <button id="download-docx-top" disabled>Download DOCX (coming soon)</button>
+        <button id="download-csv-above" onclick="downloadPhrases('csv')">Download CSV</button>
+        <button id="download-txt-above" disabled>Download TXT (coming soon)</button>
+        <button id="download-odt-above" disabled>Download ODT (coming soon)</button>
+        <button id="download-docx-above" disabled>Download DOCX (coming soon)</button>
+    </div>
+    <div id="output"></div>
+    <div id="download-section-below" style="display:none">
+        <label style="font-weight: bold;">Download Phrase Set:</label>
+        <button id="download-csv-below" onclick="downloadPhrases('csv')">Download CSV</button>
+        <button id="download-txt-below" disabled>Download TXT (coming soon)</button>
+        <button id="download-odt-below" disabled>Download ODT (coming soon)</button>
+        <button id="download-docx-below" disabled>Download DOCX (coming soon)</button>
     </div>
 
     <script src="assets/phrases.js"></script> <!-- Updated path -->

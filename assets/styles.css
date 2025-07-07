@@ -176,6 +176,58 @@ hr {
     cursor: not-allowed;
 }
 
+#download-section-middle {
+    margin-bottom: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ccc;
+}
+#download-section-middle label {
+    margin-right: 12px;
+}
+#download-section-middle button {
+    margin-right: 8px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#download-section-middle button:disabled {
+    background-color: #e0e0e0;
+    color: #888;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+}
+
+#download-section-above, #download-section-below {
+    margin-bottom: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ccc;
+}
+#download-section-above label, #download-section-below label {
+    margin-right: 12px;
+}
+#download-section-above button, #download-section-below button {
+    margin-right: 8px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#download-section-above button:disabled, #download-section-below button:disabled {
+    background-color: #e0e0e0;
+    color: #888;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+}
+
 #wordInput.input-error {
     border: 2px solid #e74c3c;
     background-color: #fff6f6;
