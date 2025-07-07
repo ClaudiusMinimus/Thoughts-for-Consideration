@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Name Acronym Builder</title>
-    <meta name="description" content="A web app to generate personalized name acronyms based on Christian principles and virtues, using phrase sets by Jim Subashe and the Topical Guide of The Church of Jesus Christ of Latter-day Saints.">
+    <meta name="description" content="A web app to generate personalized name acronyms based on Christian principles and virtues, using Jim Subashe's original phrase set and phrase sets using the Topical Guide of The Church of Jesus Christ of Latter-day Saints.">
     <link rel="stylesheet" href="assets/styles.css"> <!-- Updated path -->
 </head>
 <body>
     <h1>Personal Name Acronym Builder</h1>
     <p style="font-size:1.1em; margin-top:0; margin-bottom:1.5em; color:#444;">
-      A web app to generate personalized name acronyms based on Christian principles and virtues, using phrase sets by Jim Subashe and the Topical Guide of The Church of Jesus Christ of Latter-day Saints.
+        A web app to generate personalized name acronyms based on Christian principles and virtues, using Jim Subashe's original phrase set and phrase sets using the Topical Guide of <a href="https://churchofjesuschrist.org" target="_blank" rel="noopener">The Church of Jesus Christ of Latter-day Saints</a>.
     </p>
-    <p>By Jim Subashe</p>
     <form id="phraseForm" onsubmit="showPhrases(event)">
         <div class="form-group">
             <label for="phraseSet" style="font-weight: bold;">Select Phrase Set: </label>
@@ -46,6 +45,10 @@
         <button id="download-odt-below" disabled>Download ODT (coming soon)</button>
         <button id="download-docx-below" disabled>Download DOCX (coming soon)</button>
     </div>
+
+    <footer style="margin-top:2em; color:#888; font-size:0.95em; text-align:center;">
+      This Personal Name Acronym Builder is not affiliated with <a href="https://churchofjesuschrist.org" target="_blank" rel="noopener">The Church of Jesus Christ of Latter-day Saints</a>.
+    </footer>
 
     <script src="assets/phrases.js"></script> <!-- Updated path -->
     <script src="assets/script.js"></script> <!-- Updated path -->
