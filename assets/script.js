@@ -143,7 +143,7 @@ function showPhrases(event) {
     const input = document.getElementById('wordInput').value.trim();
     // Validate: at least one alphabetical character
     if (!/[a-zA-Z]/.test(input)) {
-        document.getElementById('output').innerHTML = '<em>Please enter a name with at least one alphabetical character.</em>';
+        document.getElementById('output').innerHTML = '<em>Please enter a name in this field.</em>';
         document.getElementById('download-section-top').style.display = 'none';
         return;
     }
