@@ -12,4 +12,14 @@ You can view the rendered guide here:
 
 ---
 
+## 🚀 App Demo (Rendered index.html)
+
+You can view the live app here:
+
+- [index.html (App Rendered)](https://raw.githack.com/ClaudiusMinimus/Thoughts-for-Consideration/main/index.html)
+
+> This also uses [githack.com](https://raw.githack.com/) for live HTML rendering. For a custom domain or official deployment, use GitHub Pages or another static host.
+
+---
+
 Personal Name Acronym Builder Becoming Your Best Christian Self
