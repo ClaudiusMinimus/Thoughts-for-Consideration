@@ -221,6 +221,16 @@ function clearInput() {
 
 function downloadPhrases(format) {
     if (format === 'csv') {
+        // Get the entered name and format it for filename
+        const inputName = document.getElementById('wordInput').value.trim();
+        const filename = inputName
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '') // Remove special characters except letters, numbers, and spaces
+            .replace(/\s+/g, '_') // Replace spaces with underscores
+            .replace(/_+/g, '_') // Replace multiple underscores with single underscore
+            .replace(/^_|_$/g, '') // Remove leading/trailing underscores
+            || 'phrases'; // Fallback if name is empty or only special characters
+        
         // Gather the current phrase set (with per-letter overrides if any)
         // We'll use the currentPhraseSet and currentPhraseSetName
         // If the user has selected any per-letter overrides, those are reflected in the DOM
@@ -251,7 +261,7 @@ function downloadPhrases(format) {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'phrases.csv';
+        a.download = `${filename}.csv`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
