@@ -1,31 +1,21 @@
 # Personal Name Acronym Builder
 
+A web app to generate personalized name acronyms based on Christian principles and virtues, using phrase sets by Jim Subashe and the Topical Guide of The Church of Jesus Christ of Latter-day Saints.
+
 ---
 
 ## [🚀 App Demo](https://claudiusminimus.github.io/Thoughts-for-Consideration/)
 
-You can view the live app here:
-
-- [index.html (GitHub Pages)](https://claudiusminimus.github.io/Thoughts-for-Consideration/)
+Enter a name to generate an acronym based on your choice of phrase set: Jim Subashe's Gospel principles or the Topical Guide of The Church of Jesus Christ of Latter-day Saints.
 
 ---
 
-## 📄 SVG Template and UI Guide
+## 📄 [SVG Template and UI Guide](https://claudiusminimus.github.io/Thoughts-for-Consideration/SVG_Template_and_UI_Guide.html)
 
-You can view the rendered guide here:
-
-- [SVG Template and UI Guide](SVG_Template_and_UI_Guide.html)
+Learn how to create and use SVG templates for exporting your personalized acronyms.
 
 ---
 
-## 🌐 GitHub Pages (Live App)
+## Notice
 
-You can view the live app via GitHub Pages here:
-
-- [https://claudiusminimus.github.io/Thoughts-for-Consideration/](https://claudiusminimus.github.io/Thoughts-for-Consideration/)
-
-> This is the official GitHub Pages deployment. If you don't see your latest changes, wait a minute or refresh.
-
----
-
-Personal Name Acronym Builder Becoming Your Best Christian Self
+This Personal Name Acronym Builder is not affiliated with The Church of Jesus Christ of Latter-day Saints.
