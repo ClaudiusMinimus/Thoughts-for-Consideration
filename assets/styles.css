@@ -175,3 +175,8 @@ hr {
     border: 1px solid #ccc;
     cursor: not-allowed;
 }
+
+#wordInput.input-error {
+    border: 2px solid #e74c3c;
+    background-color: #fff6f6;
+}

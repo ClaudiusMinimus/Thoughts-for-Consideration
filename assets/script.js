@@ -140,13 +140,16 @@ function switchLetterPhrase(letter, selectedSet) {
 
 function showPhrases(event) {
     event.preventDefault(); // Prevent default form submission behavior
-    const input = document.getElementById('wordInput').value.trim();
+    const inputElem = document.getElementById('wordInput');
+    const input = inputElem.value.trim();
     // Validate: at least one alphabetical character
     if (!/[a-zA-Z]/.test(input)) {
         document.getElementById('output').innerHTML = '<em>Please enter a name in this field.</em>';
         document.getElementById('download-section-top').style.display = 'none';
+        inputElem.classList.add('input-error');
         return;
     }
+    inputElem.classList.remove('input-error');
     const words = input.split(' ');
     let output = '';
     words.forEach((word, index) => {
@@ -210,6 +213,7 @@ function clearInput() {
     document.getElementById('wordInput').value = ''; // Clear the input field
     document.getElementById('output').innerHTML = ''; // Clear the output area
     document.getElementById('download-section-top').style.display = 'none';
+    document.getElementById('wordInput').classList.remove('input-error');
 }
 
 function downloadPhrases(format) {
