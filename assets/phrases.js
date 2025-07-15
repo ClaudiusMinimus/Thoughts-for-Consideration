@@ -411,7 +411,7 @@ const scripturalPhrases = {
         "Title": "Faith",
         "Reference": "Ether 12:6",
         "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/ether/12?lang=eng",
-        "Phrase": "...ye receive no witness until after the trial of your faith."
+        "Phrase": "...that faith is things which are hoped for and not seen; wherefore, dispute not because ye see not, for ye receive no witness until after the trial of your faith."
     },
     "G": {
         "Letter": "G",
@@ -425,7 +425,7 @@ const scripturalPhrases = {
         "Title": "Hope",
         "Reference": "Romans 15:13",
         "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rom/15?lang=eng",
-        "Phrase": "Now the God of hope fill you with all joy and peace in believing, that ye may abound in hope..."
+        "Phrase": "Now the God of hope fill you with all joy and peace in believing, that ye may abound in hope, through the power of the Holy Ghost."
     },
     "I": {
         "Letter": "I",
@@ -436,10 +436,10 @@ const scripturalPhrases = {
     },
     "J": {
         "Letter": "J",
-        "Title": "Justice",
-        "Reference": "Micah 6:8",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/micah/6?lang=eng",
-        "Phrase": "He hath shewed thee, O man, what is good; and what doth the Lord require of thee, but to do justly, and to love mercy, and to walk humbly with thy God?"
+        "Title": "Joint-Heir",
+        "Reference": "Romans 8:17",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rom/8?lang=eng",
+        "Phrase": "And if children, then heirs; heirs of God, and joint-heirs with Christ; if so be that we suffer with him, that we may be also glorified together."
     },
     "K": {
         "Letter": "K",
@@ -450,10 +450,10 @@ const scripturalPhrases = {
     },
     "L": {
         "Letter": "L",
-        "Title": "Light",
-        "Reference": "John 8:12",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/8?lang=eng",
-        "Phrase": "Then spake Jesus again unto them, saying, I am the light of the world: he that followeth me shall not walk in darkness, but shall have the light of life."
+        "Title": "Look",
+        "Reference": "Titus 2:13",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/titus/2?lang=eng",
+        "Phrase": "Looking for that blessed hope, and the glorious appearing of the great God and our Saviour Jesus Christ."
     },
     "M": {
         "Letter": "M",
@@ -643,10 +643,10 @@ const topicalVirtues = {
     },
     "M": {
         "Letter": "M",
-        "Title": "Meekness",
-        "Reference": "Matthew 5:5",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/5?lang=eng",
-        "Phrase": "Blessed are the meek: for they shall inherit the earth."
+        "Title": "Moderation",
+        "Reference": "Philippians 4:5",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/philip/4?lang=eng",
+        "Phrase": "Let your moderation be known unto all men. The Lord is at hand."
     },
     "N": {
         "Letter": "N",
@@ -829,10 +829,10 @@ const topicalPrinciples = {
     },
     "M": {
         "Letter": "M",
-        "Title": "Mercy",
-        "Reference": "Matthew 5:7",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/5?lang=eng",
-        "Phrase": "Blessed are the merciful: for they shall obtain mercy."
+        "Title": "Mildness",
+        "Reference": "Helaman 5:30",
+        "ReferenceURL": "https://www.churchofjesususchrist.org/study/scriptures/bofm/hel/5?lang=eng",
+        "Phrase": "Behold, it was a still voice of perfect mildness, as if it had been a whisper, and it did pierce even to the very soul."
     },
     "N": {
         "Letter": "N",
