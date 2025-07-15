@@ -387,24 +387,24 @@ const scripturalPhrases = {
     },
     "C": {
         "Letter": "C",
-        "Title": "Charity (the pure love of Christ)",
-        "Reference": "Moroni 7:47",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/moro/7?lang=eng",
-        "Phrase": "But charity is the pure love of Christ, and it endureth forever..."
+        "Title": "Called of God",
+        "Reference": "Doctrine and Covenants 9:14",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/9?lang=eng&id=p14#p14",
+        "Phrase": "14 Stand fast in the work wherewith I have called you, and a hair of your head shall not be lost, and you shall be lifted up at the last day. Amen."
     },
     "D": {
         "Letter": "D",
-        "Title": "Diligence",
-        "Reference": "D&C 58:26–27",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/58?lang=eng",
-        "Phrase": "...it is not meet that I should command in all things... men should be anxiously engaged in a good cause..."
+        "Title": "Desire",
+        "Reference": "Psalm 51:6",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/ps/51?lang=eng&id=p6#p6",
+        "Phrase": "Behold, thou desirest truth in the inward parts: and in the hidden part thou shalt make me to know wisdom."
     },
     "E": {
         "Letter": "E",
-        "Title": "Endurance",
-        "Reference": "Matthew 24:13",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/24?lang=eng",
-        "Phrase": "But he that shall endure unto the end, the same shall be saved."
+        "Title": "Enlighten",
+        "Reference": "Ephesians 1:18",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/eph/1?lang=eng&id=p18#p18",
+        "Phrase": "The eyes of your understanding being enlightened; that ye may know what is the hope of his calling, and what the riches of the glory of his inheritance in the saints."
     },
     "F": {
         "Letter": "F",
@@ -976,8 +976,23 @@ function updateReferenceURLs(phraseSet) {
     }
 }
 
+function replaceDandCReferences(phraseSet) {
+    for (const key in phraseSet) {
+        const phrase = phraseSet[key];
+        if (phrase.Reference) {
+            // Replace 'D&C' at the start or as the book name
+            phrase.Reference = phrase.Reference.replace(/^D&C( |$)/, 'Doctrine and Covenants$1');
+        }
+    }
+}
+
 updateReferenceURLs(jsonPhrases);
 updateReferenceURLs(alternatePhrases);
 updateReferenceURLs(scripturalPhrases);
 updateReferenceURLs(topicalVirtues);
 updateReferenceURLs(topicalPrinciples);
+replaceDandCReferences(jsonPhrases);
+replaceDandCReferences(alternatePhrases);
+replaceDandCReferences(scripturalPhrases);
+replaceDandCReferences(topicalVirtues);
+replaceDandCReferences(topicalPrinciples);
