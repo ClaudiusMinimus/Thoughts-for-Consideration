@@ -215,10 +215,10 @@ const alternatePhrases = {
     },
     "E": {
         "Letter": "E",
-        "Title": "Endure to the End",
-        "Reference": "Matthew 24:13",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/24?lang=eng",
-        "Phrase": "But he that shall endure unto the end, the same shall be saved."
+        "Title": "Edify",
+        "Reference": "1 Corinthians 14:26",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/1-cor/14?lang=eng&id=p26#p26",
+        "Phrase": "How is it then, brethren? when ye come together, every one of you hath a psalm, hath a doctrine, hath a tongue, hath a revelation, hath an interpretation. Let all things be done unto edifying."
     },
     "F": {
         "Letter": "F",
@@ -355,10 +355,10 @@ const alternatePhrases = {
     },
     "Y": {
         "Letter": "Y",
-        "Title": "Yield",
-        "Reference": "Galatians 5:25",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/gal/5?lang=eng",
-        "Phrase": "If we live in the Spirit, let us also walk in the Spirit."
+        "Title": "Yoke",
+        "Reference": "Matthew 11:29-30",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/11?lang=eng",
+        "Phrase": "Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls. For my yoke is easy, and my burden is light."
     },
     "Z": {
         "Letter": "Z",
@@ -471,10 +471,10 @@ const scripturalPhrases = {
     },
     "O": {
         "Letter": "O",
-        "Title": "Promise",
-        "Reference": "2 Peter 1:4",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/2-pet/1?lang=eng",
-        "Phrase": "Whereby are given unto us exceeding great and precious promises: that by these ye might be partakers of the divine nature, having escaped the corruption that is in the world through lust."
+        "Title": "Organize",
+        "Reference": "Doctrine and Covenants 88:119",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/dc-testament/dc/88?lang=eng&id=p119#p119",
+        "Phrase": "Organize yourselves; prepare every needful thing; and establish a house, even a house of prayer, a house of fasting, a house of faith, a house of learning, a house of glory, a house of order, a house of God;"
     },
     "P": {
         "Letter": "P",
@@ -492,10 +492,10 @@ const scripturalPhrases = {
     },
     "R": {
         "Letter": "R",
-        "Title": "Righteousness",
-        "Reference": "Matthew 6:33",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/6?lang=eng",
-        "Phrase": "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you."
+        "Title": "Restore",
+        "Reference": "Alma 41:14",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/alma/41?lang=eng&id=p14#p14",
+        "Phrase": "Therefore, my son, see that you are merciful unto your brethren; deal justly, judge righteously, and do good continually; and if ye do all these things then shall ye receive your reward; yea, ye shall have mercy restored unto you again; ye shall have justice restored unto you again; ye shall have a righteous judgment restored unto you again; and ye shall have good rewarded unto you again."
     },
     "S": {
         "Letter": "S",
@@ -657,10 +657,10 @@ const topicalVirtues = {
     },
     "O": {
         "Letter": "O",
-        "Title": "Obedience",
-        "Reference": "John 14:15",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/john/14?lang=eng",
-        "Phrase": "If ye love me, keep my commandments."
+        "Title": "Oil",
+        "Reference": "Matthew 25:4",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/25?lang=eng&id=p4#p4",
+        "Phrase": "But the wise took oil in their vessels with their lamps."
     },
     "P": {
         "Letter": "P",
@@ -727,10 +727,10 @@ const topicalVirtues = {
     },
     "Y": {
         "Letter": "Y",
-        "Title": "Yield",
-        "Reference": "Romans 6:13",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/rom/6?lang=eng",
-        "Phrase": "Neither yield ye your members as instruments of unrighteousness unto sin: but yield yourselves unto God, as those that are alive from the dead, and your members as instruments of righteousness unto God."
+        "Title": "Youth",
+        "Reference": "Psalm 25:7",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/ot/ps/25?lang=eng&id=p7#p7",
+        "Phrase": "Remember not the sins of my youth, nor my transgressions: according to thy mercy remember thou me for thy goodness' sake, O Lord."
     },
     "Z": {
         "Letter": "Z",
@@ -864,10 +864,10 @@ const topicalPrinciples = {
     },
     "R": {
         "Letter": "R",
-        "Title": "Repentance",
-        "Reference": "Acts 3:19",
-        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/nt/acts/3?lang=eng",
-        "Phrase": "Repent ye therefore, and be converted, that your sins may be blotted out, when the times of refreshing shall come from the presence of the Lord."
+        "Title": "Remember",
+        "Reference": "Helaman 5:12",
+        "ReferenceURL": "https://www.churchofjesuschrist.org/study/scriptures/bofm/hel/5?lang=eng&id=p12#12",
+        "Phrase": "Remember, remember that it is upon the rock of our Redeemer, who is Christ, the Son of God, that ye must build your foundation; that when the devil shall send forth his mighty winds, yea, his shafts in the whirlwind, yea, when all his hail and his mighty storm shall beat upon you, it shall have no power over you to drag you down to the gulf of misery and endless wo, because of the rock upon which ye are built, which is a sure foundation, a foundation whereon if men build they cannot fall."
     },
     "S": {
         "Letter": "S",
