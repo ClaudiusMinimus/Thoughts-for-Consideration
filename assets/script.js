@@ -84,10 +84,9 @@ function getAllTitlesForLetter(letter) {
     return titles;
 }
 
-function switchLetterPhrase(letter, selectedSet) {
+function switchLetterPhrase(letter, selectedSet, index) {
     const upperLetter = letter.toUpperCase();
     let newData = null;
-    
     if (selectedSet === 'original' && jsonPhrases[upperLetter]) {
         newData = jsonPhrases[upperLetter];
     } else if (selectedSet === 'alternate' && alternatePhrases[upperLetter]) {
@@ -99,42 +98,64 @@ function switchLetterPhrase(letter, selectedSet) {
     } else if (selectedSet === 'topicalPrinciples' && topicalPrinciples[upperLetter]) {
         newData = topicalPrinciples[upperLetter];
     }
-    
     if (newData) {
-        // Find the phrase entry for this letter and update it
-        const phraseEntries = document.querySelectorAll('.phrase-entry');
-        phraseEntries.forEach(entry => {
-            const letterSpan = entry.querySelector('.letter');
-            if (letterSpan && letterSpan.textContent === upperLetter) {
-                // Update title
-                const titleDiv = entry.querySelector('.phrase-title');
-                if (titleDiv) {
-                    titleDiv.textContent = newData.Title;
-                }
-                
-                // Update reference
-                const referenceDiv = entry.querySelector('.phrase-reference');
-                if (referenceDiv) {
-                    if (newData.ReferenceURL) {
-                        referenceDiv.innerHTML = `<a href="${newData.ReferenceURL}" target="_blank">${newData.Reference}</a>`;
-                    } else {
-                        referenceDiv.textContent = newData.Reference;
-                    }
-                }
-                
-                // Update phrase text
-                const phraseDiv = entry.querySelector('.phrase-text');
-                if (phraseDiv) {
-                    phraseDiv.innerHTML = formatMarkdown(newData.Phrase);
-                }
-                
-                // Update the dropdown to reflect the new selection
-                const dropdown = entry.querySelector('.title-dropdown');
-                if (dropdown) {
-                    dropdown.value = selectedSet;
+        // Find the phrase entry for this index and update it
+        const entry = document.querySelector(`.phrase-entry[data-index='${index}']`);
+        if (entry) {
+            // Update title
+            const titleDiv = entry.querySelector('.phrase-title');
+            if (titleDiv) {
+                titleDiv.textContent = newData.Title;
+            }
+            // Update reference
+            const referenceDiv = entry.querySelector('.phrase-reference');
+            if (referenceDiv) {
+                if (newData.ReferenceURL) {
+                    referenceDiv.innerHTML = `<a href="${newData.ReferenceURL}" target="_blank">${newData.Reference}</a>`;
+                } else {
+                    referenceDiv.textContent = newData.Reference;
                 }
             }
-        });
+            // Update phrase textarea value
+            const phraseTextarea = entry.querySelector('.phrase-edit');
+            if (phraseTextarea) {
+                phraseTextarea.value = newData.Phrase;
+            }
+            // Update the dropdown to reflect the new selection
+            const dropdown = entry.querySelector('.title-dropdown');
+            if (dropdown) {
+                dropdown.value = selectedSet;
+            }
+        }
+    }
+}
+
+function resetPhrase(letter, index) {
+    const upperLetter = letter.toUpperCase();
+    let phraseData = getPhraseForLetter(letter);
+    // If the dropdown was changed, get the selected set for this entry
+    const entry = document.querySelector(`.phrase-entry[data-index='${index}']`);
+    if (entry) {
+        const dropdown = entry.querySelector('.title-dropdown');
+        let set = currentPhraseSetName;
+        if (dropdown) {
+            set = dropdown.value;
+        }
+        if (set === 'original' && jsonPhrases[upperLetter]) {
+            phraseData = jsonPhrases[upperLetter];
+        } else if (set === 'alternate' && alternatePhrases[upperLetter]) {
+            phraseData = alternatePhrases[upperLetter];
+        } else if (set === 'scriptural' && scripturalPhrases[upperLetter]) {
+            phraseData = scripturalPhrases[upperLetter];
+        } else if (set === 'topicalVirtues' && topicalVirtues[upperLetter]) {
+            phraseData = topicalVirtues[upperLetter];
+        } else if (set === 'topicalPrinciples' && topicalPrinciples[upperLetter]) {
+            phraseData = topicalPrinciples[upperLetter];
+        }
+        const textarea = entry.querySelector('.phrase-edit');
+        if (textarea && phraseData) {
+            textarea.value = phraseData.Phrase;
+        }
     }
 }
 
@@ -161,23 +182,21 @@ function showPhrases(event) {
     inputElem.classList.remove('input-error');
     const words = input.split(' ');
     let output = '';
+    let phraseEntryIndex = 0;
     words.forEach((word, index) => {
         for (let letter of word) {
             if (letter.match(/[a-zA-Z]/)) {
                 const phraseData = getPhraseForLetter(letter);
                 if (phraseData) {
                     const allTitles = getAllTitlesForLetter(letter);
-                    
-                    output += `<div class=\"phrase-entry\">`;
+                    output += `<div class=\"phrase-entry\" data-index=\"${phraseEntryIndex}\">`;
+                    output += `<div class=\"phrase-entry-content\">`;
                     output += `<span class=\"letter\">${phraseData.Letter}</span>`;
-                    
                     if (phraseData.Title) {
                         output += `<div class=\"phrase-header\">`;
                         output += `<div class=\"phrase-title\">${phraseData.Title}</div>`;
-                        
-                        // Add dropdown if there are multiple titles available
                         if (allTitles.length > 1) {
-                            output += `<select class=\"title-dropdown\" onchange=\"switchLetterPhrase('${letter}', this.value)\">`;
+                            output += `<select class=\"title-dropdown\" data-index=\"${phraseEntryIndex}\" onchange=\"switchLetterPhrase('${letter}', this.value, ${phraseEntryIndex})\">`;
                             allTitles.forEach(titleInfo => {
                                 const selected = titleInfo.set === currentPhraseSetName ? 'selected' : '';
                                 const setLabel = titleInfo.set === 'original' ? 'Original' : 
@@ -188,10 +207,8 @@ function showPhrases(event) {
                             });
                             output += `</select>`;
                         }
-                        
                         output += `</div>`;
                     }
-                    
                     if (phraseData.Reference) {
                         if (phraseData.ReferenceURL) {
                             output += `<div class=\"phrase-reference\"><a href=\"${phraseData.ReferenceURL}\" target=\"_blank\">${phraseData.Reference}</a></div>`;
@@ -199,9 +216,11 @@ function showPhrases(event) {
                             output += `<div class=\"phrase-reference\">${phraseData.Reference}</div>`;
                         }
                     }
-                    
-                    output += `<div class=\"phrase-text\">${formatMarkdown(phraseData.Phrase)}</div>`;
+                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" rows=\"3\" style=\"width:100%;resize:vertical;\">${phraseData.Phrase.replace(/"/g, '&quot;')}</textarea>`;
+                    output += `</div>`; // close phrase-entry-content
+                    output += `<button type=\"button\" class=\"reset-phrase-btn\" onmouseover=\"highlightPhraseEntry(${phraseEntryIndex}, true)\" onmouseout=\"highlightPhraseEntry(${phraseEntryIndex}, false)\" onclick=\"resetPhrase('${letter}', ${phraseEntryIndex})\">Reset</button>`;
                     output += `</div>`;
+                    phraseEntryIndex++;
                 } else {
                     output += `<div class=\"phrase-entry\">`;
                     output += `<span class=\"letter\">${letter.toUpperCase()}</span>`;
@@ -259,7 +278,8 @@ function downloadPhrases(format) {
                 reference = entry.querySelector('.phrase-reference')?.textContent || '';
                 referenceURL = '';
             }
-            const phrase = entry.querySelector('.phrase-text')?.textContent || '';
+            // Get the edited phrase from the textarea
+            const phrase = entry.querySelector('.phrase-edit')?.value || '';
             rows.push([letter, title, reference, phrase, referenceURL]);
         });
         // Convert to CSV
@@ -276,4 +296,15 @@ function downloadPhrases(format) {
         URL.revokeObjectURL(url);
     }
     // TXT, ODT, DOCX: not implemented yet
+}
+
+function highlightPhraseEntry(index, highlight) {
+    const entry = document.querySelector(`.phrase-entry[data-index='${index}'] .phrase-entry-content`);
+    if (entry) {
+        if (highlight) {
+            entry.classList.add('highlight-phrase-entry');
+        } else {
+            entry.classList.remove('highlight-phrase-entry');
+        }
+    }
 }

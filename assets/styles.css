@@ -232,3 +232,55 @@ hr {
     border: 2px solid #e74c3c;
     background-color: #fff6f6;
 }
+
+.phrase-edit {
+    width: 100%;
+    min-height: 48px;
+    font-size: 1em;
+    font-family: inherit;
+    padding: 8px;
+    border: 1.5px solid #bfc9d1;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    resize: vertical;
+    background: #f8fafc;
+    color: #222;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.phrase-edit:focus {
+    border-color: #3498db;
+    outline: none;
+    background: #fff;
+}
+.reset-phrase-btn {
+    margin-top: 4px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding: 6px 14px;
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #bfc9d1;
+    border-radius: 4px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    display: inline-block;
+}
+.reset-phrase-btn:hover {
+    background-color: #f5f5f5;
+    border-color: #3498db;
+    color: #222;
+}
+.highlight-phrase-entry {
+    background: #fffbe6;
+    border: 2px solid #ffd54f;
+    border-radius: 6px;
+    box-shadow: 0 0 6px 2px #ffe08255;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.phrase-entry-content {
+    border: 2px solid transparent;
+    border-radius: 6px;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
