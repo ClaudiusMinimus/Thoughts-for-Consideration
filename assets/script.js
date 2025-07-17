@@ -360,6 +360,97 @@ function downloadPhrases(format) {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
+    else if (format === 'odt') {
+        // ODT: Minimal OpenDocument Text export (with valid structure)
+        const inputName = document.getElementById('wordInput').value.trim();
+        const filename = (inputName || 'phrases').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '') || 'phrases';
+        const phraseEntries = document.querySelectorAll('.phrase-entry');
+        let odtBody = '';
+        phraseEntries.forEach(entry => {
+            const letter = escapeXml(entry.querySelector('.letter')?.textContent || '');
+            const title = escapeXml(entry.querySelector('.phrase-title')?.textContent || '');
+            const referenceLink = entry.querySelector('.phrase-reference a');
+            let reference = '';
+            let referenceURL = '';
+            if (referenceLink) {
+                reference = escapeXml(referenceLink.textContent);
+                referenceURL = escapeXml(referenceLink.getAttribute('href'));
+            } else {
+                reference = escapeXml(entry.querySelector('.phrase-reference')?.textContent || '');
+                referenceURL = '';
+            }
+            const phrase = escapeXml(entry.querySelector('.phrase-edit')?.value || '');
+            odtBody += `<text:p><text:span text:style-name="Bold">Letter:</text:span> ${letter}</text:p>`;
+            odtBody += `<text:p><text:span text:style-name="Bold">Title:</text:span> ${title}</text:p>`;
+            odtBody += `<text:p><text:span text:style-name="Bold">Reference:</text:span> ${reference}</text:p>`;
+            odtBody += `<text:p><text:span text:style-name="Bold">Phrase:</text:span> ${phrase}</text:p>`;
+            odtBody += `<text:p><text:span text:style-name="Bold">ReferenceURL:</text:span> ${referenceURL}</text:p>`;
+            odtBody += `<text:p/>`;
+        });
+        const contentXml = `<?xml version="1.0" encoding="UTF-8"?>\n<office:document-content\n  xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"\n  xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"\n  xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"\n  xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"\n  office:version="1.2">\n  <office:automatic-styles>\n    <style:style style:name="Bold" style:family="text">\n      <style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>\n    </style:style>\n  </office:automatic-styles>\n  <office:body>\n    <office:text>\n      ${odtBody}\n    </office:text>\n  </office:body>\n</office:document-content>`;
+        const mimetype = 'application/vnd.oasis.opendocument.text';
+        const manifestXml = `<?xml version="1.0" encoding="UTF-8"?><manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"><manifest:file-entry manifest:media-type="application/vnd.oasis.opendocument.text" manifest:full-path="/"/><manifest:file-entry manifest:media-type="text/xml" manifest:full-path="content.xml"/></manifest:manifest>`;
+        const zip = new JSZip();
+        zip.file('mimetype', mimetype, { binary: true });
+        zip.file('content.xml', contentXml);
+        zip.file('META-INF/manifest.xml', manifestXml);
+        zip.generateAsync({ type: 'blob', mimeType: mimetype }).then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${filename}.odt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    }
+    else if (format === 'docx') {
+        // DOCX: Minimal WordprocessingML export (with valid structure and escaping)
+        const inputName = document.getElementById('wordInput').value.trim();
+        const filename = (inputName || 'phrases').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '') || 'phrases';
+        const phraseEntries = document.querySelectorAll('.phrase-entry');
+        let docxBody = '';
+        phraseEntries.forEach(entry => {
+            const letter = escapeXml(entry.querySelector('.letter')?.textContent || '');
+            const title = escapeXml(entry.querySelector('.phrase-title')?.textContent || '');
+            const referenceLink = entry.querySelector('.phrase-reference a');
+            let reference = '';
+            let referenceURL = '';
+            if (referenceLink) {
+                reference = escapeXml(referenceLink.textContent);
+                referenceURL = escapeXml(referenceLink.getAttribute('href'));
+            } else {
+                reference = escapeXml(entry.querySelector('.phrase-reference')?.textContent || '');
+                referenceURL = '';
+            }
+            const phrase = escapeXml(entry.querySelector('.phrase-edit')?.value || '');
+            docxBody += `<w:p><w:r><w:t>Letter: ${letter}</w:t></w:r></w:p>`;
+            docxBody += `<w:p><w:r><w:t>Title: ${title}</w:t></w:r></w:p>`;
+            docxBody += `<w:p><w:r><w:t>Reference: ${reference}</w:t></w:r></w:p>`;
+            docxBody += `<w:p><w:r><w:t>Phrase: ${phrase}</w:t></w:r></w:p>`;
+            docxBody += `<w:p><w:r><w:t>ReferenceURL: ${referenceURL}</w:t></w:r></w:p>`;
+            docxBody += `<w:p/>`;
+        });
+        const docxXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">\n<w:body>\n${docxBody}\n</w:body>\n</w:document>`;
+        // Minimal [Content_Types].xml and _rels/.rels for DOCX
+        const contentTypes = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
+        const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+        const zip = new JSZip();
+        zip.file('[Content_Types].xml', contentTypes);
+        zip.folder('_rels').file('.rels', rels);
+        zip.folder('word').file('document.xml', docxXml);
+        zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }).then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${filename}.docx`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    }
     // TXT, ODT, DOCX: not implemented yet
 }
 
@@ -576,3 +667,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+function escapeXml(str) {
+    return str.replace(/[&<>"']/g, function (c) {
+        switch (c) {
+            case '&': return '&amp;';
+            case '<': return '&lt;';
+            case '>': return '&gt;';
+            case '"': return '&quot;';
+            case "'": return '&apos;';
+        }
+    });
+}
