@@ -120,6 +120,7 @@ function switchLetterPhrase(letter, selectedSet, index) {
             const phraseTextarea = entry.querySelector('.phrase-edit');
             if (phraseTextarea) {
                 phraseTextarea.value = newData.Phrase;
+                autoResizeTextarea(phraseTextarea);
             }
             // Update the dropdown to reflect the new selection
             const dropdown = entry.querySelector('.title-dropdown');
@@ -158,6 +159,7 @@ function resetPhrase(letter, index) {
         const textarea = entry.querySelector('.phrase-edit');
         if (textarea && phraseData) {
             textarea.value = phraseData.Phrase;
+            autoResizeTextarea(textarea);
             const resetBtn = document.getElementById(`reset-btn-${index}`);
             if (resetBtn) resetBtn.disabled = true;
         }
@@ -201,7 +203,7 @@ function showPhrases(event) {
                         output += `<div class=\"phrase-header\">`;
                         output += `<div class=\"phrase-title\">${phraseData.Title}</div>`;
                         if (allTitles.length > 1) {
-                            output += `<select class=\"title-dropdown\" data-index=\"${phraseEntryIndex}\" onchange=\"switchLetterPhrase('${letter}', this.value, ${phraseEntryIndex})\">`;
+                            output += `<select class=\"title-dropdown\" data-index=\"${phraseEntryIndex}\" onchange=\"switchLetterPhrase('${letter}', this.value, ${phraseEntryIndex})\" aria-label=\"Select phrase set for letter ${phraseData.Letter}\">`;
                             allTitles.forEach(titleInfo => {
                                 const selected = titleInfo.set === currentPhraseSetName ? 'selected' : '';
                                 const setLabel = titleInfo.set === 'original' ? 'Original' : 
@@ -221,9 +223,9 @@ function showPhrases(event) {
                             output += `<div class=\"phrase-reference\">${phraseData.Reference}</div>`;
                         }
                     }
-                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" rows=\"3\" style=\"width:100%;resize:vertical;\" oninput=\"checkResetButton(${phraseEntryIndex}, '${letter}')\">${phraseData.Phrase.replace(/"/g, '&quot;')}</textarea>`;
+                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" rows=\"3\" style=\"width:100%;resize:vertical;\" oninput=\"checkResetButton(${phraseEntryIndex}, '${letter}');autoResizeTextarea(this)\" aria-label=\"Phrase for letter ${phraseData.Letter}\">${phraseData.Phrase.replace(/\"/g, '&quot;')}</textarea>`;
                     output += `</div>`; // close phrase-entry-content
-                    output += `<button type=\"button\" class=\"reset-phrase-btn\" id=\"reset-btn-${phraseEntryIndex}\" onmouseover=\"highlightPhraseEntry(${phraseEntryIndex}, true)\" onmouseout=\"highlightPhraseEntry(${phraseEntryIndex}, false)\" onclick=\"resetPhrase('${letter}', ${phraseEntryIndex})\" disabled>Reset</button>`;
+                    output += `<button type=\"button\" class=\"reset-phrase-btn\" id=\"reset-btn-${phraseEntryIndex}\" onmouseover=\"highlightPhraseEntry(${phraseEntryIndex}, true)\" onmouseout=\"highlightPhraseEntry(${phraseEntryIndex}, false)\" onclick=\"resetPhrase('${letter}', ${phraseEntryIndex})\" disabled aria-label=\"Reset phrase for letter ${phraseData.Letter}\">Reset</button>`;
                     output += `</div>`;
                     phraseEntryIndex++;
                 } else {
@@ -241,6 +243,10 @@ function showPhrases(event) {
     document.getElementById('output').innerHTML = output;
     document.getElementById('download-section-above').style.display = '';
     document.getElementById('download-section-below').style.display = '';
+    // After rendering, auto-resize all textareas
+    setTimeout(() => {
+        document.querySelectorAll('.phrase-edit').forEach(autoResizeTextarea);
+    }, 0);
 }
 
 function clearInput() {
@@ -344,5 +350,12 @@ function checkResetButton(index, letter) {
                 resetBtn.disabled = true;
             }
         }
+    }
+}
+
+function autoResizeTextarea(textarea) {
+    if (textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
     }
 }
