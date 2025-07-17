@@ -126,6 +126,9 @@ function switchLetterPhrase(letter, selectedSet, index) {
             if (dropdown) {
                 dropdown.value = selectedSet;
             }
+            // Disable the reset button after switching
+            const resetBtn = document.getElementById(`reset-btn-${index}`);
+            if (resetBtn) resetBtn.disabled = true;
         }
     }
 }
@@ -155,6 +158,8 @@ function resetPhrase(letter, index) {
         const textarea = entry.querySelector('.phrase-edit');
         if (textarea && phraseData) {
             textarea.value = phraseData.Phrase;
+            const resetBtn = document.getElementById(`reset-btn-${index}`);
+            if (resetBtn) resetBtn.disabled = true;
         }
     }
 }
@@ -216,9 +221,9 @@ function showPhrases(event) {
                             output += `<div class=\"phrase-reference\">${phraseData.Reference}</div>`;
                         }
                     }
-                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" rows=\"3\" style=\"width:100%;resize:vertical;\">${phraseData.Phrase.replace(/"/g, '&quot;')}</textarea>`;
+                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" rows=\"3\" style=\"width:100%;resize:vertical;\" oninput=\"checkResetButton(${phraseEntryIndex}, '${letter}')\">${phraseData.Phrase.replace(/"/g, '&quot;')}</textarea>`;
                     output += `</div>`; // close phrase-entry-content
-                    output += `<button type=\"button\" class=\"reset-phrase-btn\" onmouseover=\"highlightPhraseEntry(${phraseEntryIndex}, true)\" onmouseout=\"highlightPhraseEntry(${phraseEntryIndex}, false)\" onclick=\"resetPhrase('${letter}', ${phraseEntryIndex})\">Reset</button>`;
+                    output += `<button type=\"button\" class=\"reset-phrase-btn\" id=\"reset-btn-${phraseEntryIndex}\" onmouseover=\"highlightPhraseEntry(${phraseEntryIndex}, true)\" onmouseout=\"highlightPhraseEntry(${phraseEntryIndex}, false)\" onclick=\"resetPhrase('${letter}', ${phraseEntryIndex})\" disabled>Reset</button>`;
                     output += `</div>`;
                     phraseEntryIndex++;
                 } else {
@@ -305,6 +310,39 @@ function highlightPhraseEntry(index, highlight) {
             entry.classList.add('highlight-phrase-entry');
         } else {
             entry.classList.remove('highlight-phrase-entry');
+        }
+    }
+}
+
+function checkResetButton(index, letter) {
+    const entry = document.querySelector(`.phrase-entry[data-index='${index}']`);
+    if (entry) {
+        const textarea = entry.querySelector('.phrase-edit');
+        const dropdown = entry.querySelector('.title-dropdown');
+        let set = currentPhraseSetName;
+        if (dropdown) {
+            set = dropdown.value;
+        }
+        const upperLetter = letter.toUpperCase();
+        let originalPhrase = '';
+        if (set === 'original' && jsonPhrases[upperLetter]) {
+            originalPhrase = jsonPhrases[upperLetter].Phrase;
+        } else if (set === 'alternate' && alternatePhrases[upperLetter]) {
+            originalPhrase = alternatePhrases[upperLetter].Phrase;
+        } else if (set === 'scriptural' && scripturalPhrases[upperLetter]) {
+            originalPhrase = scripturalPhrases[upperLetter].Phrase;
+        } else if (set === 'topicalVirtues' && topicalVirtues[upperLetter]) {
+            originalPhrase = topicalVirtues[upperLetter].Phrase;
+        } else if (set === 'topicalPrinciples' && topicalPrinciples[upperLetter]) {
+            originalPhrase = topicalPrinciples[upperLetter].Phrase;
+        }
+        const resetBtn = document.getElementById(`reset-btn-${index}`);
+        if (resetBtn && textarea) {
+            if (textarea.value !== originalPhrase) {
+                resetBtn.disabled = false;
+            } else {
+                resetBtn.disabled = true;
+            }
         }
     }
 }
