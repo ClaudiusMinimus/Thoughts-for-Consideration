@@ -30,6 +30,11 @@
             <button type="button" id="clearButton" onclick="clearInput()">Clear</button>
         </div>
     </form>
+    <div id="save-load-section" style="margin-bottom: 16px; display: flex; gap: 10px; align-items: center;">
+        <button id="save-btn" type="button">Save</button>
+        <button id="load-btn" type="button">Load</button>
+        <span id="save-load-message" style="font-size:0.95em;color:#1976d2;"></span>
+    </div>
     <div id="download-section-above" style="display:none">
         <label style="font-weight: bold;">Download Phrase Set:</label>
         <button id="download-csv-above" onclick="downloadPhrases('csv')">Download CSV</button>

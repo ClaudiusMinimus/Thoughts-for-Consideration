@@ -194,12 +194,16 @@ function showPhrases(event) {
     const words = input.split(' ');
     let output = '';
     let phraseEntryIndex = 0;
+    const loadOverrides = window._acronymLoadOverrides || [];
     words.forEach((word, index) => {
         for (let letter of word) {
             if (letter.match(/[a-zA-Z]/)) {
                 const phraseData = getPhraseForLetter(letter);
                 if (phraseData) {
                     const allTitles = getAllTitlesForLetter(letter);
+                    const override = loadOverrides[phraseEntryIndex];
+                    let selectedSet = override ? override.set : currentPhraseSetName;
+                    let phraseValue = override ? override.phrase : phraseData.Phrase;
                     output += `<div class=\"phrase-entry\" data-index=\"${phraseEntryIndex}\">`;
                     output += `<div class=\"phrase-entry-content\">`;
                     output += `<span class=\"letter\">${phraseData.Letter}</span>`;
@@ -209,7 +213,7 @@ function showPhrases(event) {
                         if (allTitles.length > 1) {
                             output += `<select class=\"title-dropdown\" data-index=\"${phraseEntryIndex}\" onchange=\"switchLetterPhrase('${letter}', this.value, ${phraseEntryIndex})\" aria-label=\"Select phrase set for letter ${phraseData.Letter}\">`;
                             allTitles.forEach(titleInfo => {
-                                const selected = titleInfo.set === currentPhraseSetName ? 'selected' : '';
+                                const selected = titleInfo.set === selectedSet ? 'selected' : '';
                                 const setLabel = titleInfo.set === 'original' ? 'Original' : 
                                                titleInfo.set === 'alternate' ? 'Christlike Living' : 
                                                titleInfo.set === 'scriptural' ? 'Gospel Principles' :
@@ -227,7 +231,7 @@ function showPhrases(event) {
                             output += `<div class=\"phrase-reference\">${phraseData.Reference}</div>`;
                         }
                     }
-                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" data-letter=\"${phraseData.Letter}\" rows=\"3\" style=\"width:100%;resize:vertical;\" oninput=\"checkResetButton(${phraseEntryIndex}, '${letter}');autoResizeTextarea(this);pushUndo(${phraseEntryIndex}, this.value);updateUndoRedoButtons(${phraseEntryIndex})\" aria-label=\"Phrase for letter ${phraseData.Letter}\" onkeydown=\"handleUndoRedoKey(event, ${phraseEntryIndex})\">${phraseData.Phrase.replace(/\"/g, '&quot;')}</textarea>`;
+                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" data-letter=\"${phraseData.Letter}\" rows=\"3\" style=\"width:100%;resize:vertical;\" oninput=\"checkResetButton(${phraseEntryIndex}, '${letter}');autoResizeTextarea(this);pushUndo(${phraseEntryIndex}, this.value);updateUndoRedoButtons(${phraseEntryIndex})\" aria-label=\"Phrase for letter ${phraseData.Letter}\" onkeydown=\"handleUndoRedoKey(event, ${phraseEntryIndex})\">${phraseValue.replace(/\"/g, '&quot;')}</textarea>`;
                     output += `<button type=\"button\" class=\"undo-phrase-btn\" id=\"undo-btn-${phraseEntryIndex}\" onclick=\"undoPhrase(${phraseEntryIndex})\" title=\"Undo\" disabled aria-label=\"Undo for letter ${phraseData.Letter}\">⎌</button>`;
                     output += `<button type=\"button\" class=\"redo-phrase-btn\" id=\"redo-btn-${phraseEntryIndex}\" onclick=\"redoPhrase(${phraseEntryIndex})\" title=\"Redo\" disabled aria-label=\"Redo for letter ${phraseData.Letter}\">↻</button>`;
                     output += `</div>`; // close phrase-entry-content
@@ -438,3 +442,97 @@ function handleUndoRedoKey(e, index) {
         redoPhrase(index);
     }
 }
+
+// Save/Load functionality
+function getCurrentAcronymState() {
+    const inputName = document.getElementById('wordInput').value.trim();
+    const phraseEntries = document.querySelectorAll('.phrase-entry');
+    const entries = [];
+    phraseEntries.forEach(entry => {
+        const letter = entry.querySelector('.letter')?.textContent || '';
+        const title = entry.querySelector('.phrase-title')?.textContent || '';
+        const referenceLink = entry.querySelector('.phrase-reference a');
+        let reference = '';
+        let referenceURL = '';
+        if (referenceLink) {
+            reference = referenceLink.textContent;
+            referenceURL = referenceLink.getAttribute('href');
+        } else {
+            reference = entry.querySelector('.phrase-reference')?.textContent || '';
+            referenceURL = '';
+        }
+        const phrase = entry.querySelector('.phrase-edit')?.value || '';
+        const setDropdown = entry.querySelector('.title-dropdown');
+        const set = setDropdown ? setDropdown.value : currentPhraseSetName;
+        entries.push({ letter, title, reference, referenceURL, phrase, set });
+    });
+    return {
+        name: inputName,
+        entries: entries
+    };
+}
+
+function setAcronymState(state) {
+    document.getElementById('wordInput').value = state.name || '';
+    // Re-generate output with the saved name and phrase sets
+    if (state.name) {
+        // Temporarily store per-letter set overrides
+        window._acronymLoadOverrides = state.entries;
+        showPhrases({ preventDefault: () => {} });
+        setTimeout(() => {
+            // After rendering, set dropdowns and textareas to saved values
+            const phraseEntries = document.querySelectorAll('.phrase-entry');
+            phraseEntries.forEach((entry, i) => {
+                const override = state.entries[i];
+                if (!override) return;
+                const dropdown = entry.querySelector('.title-dropdown');
+                if (dropdown) dropdown.value = override.set;
+                // Trigger phrase set change if needed
+                if (dropdown && dropdown.value !== currentPhraseSetName) {
+                    switchLetterPhrase(override.letter, override.set, i);
+                }
+                // Set phrase text
+                const textarea = entry.querySelector('.phrase-edit');
+                if (textarea) {
+                    textarea.value = override.phrase;
+                    autoResizeTextarea(textarea);
+                    // Update undo/redo history
+                    initPhraseHistory(i, override.phrase);
+                    updateUndoRedoButtons(i);
+                }
+            });
+            window._acronymLoadOverrides = undefined;
+        }, 0);
+    }
+}
+
+function showSaveLoadMessage(msg) {
+    const el = document.getElementById('save-load-message');
+    if (el) {
+        el.textContent = msg;
+        setTimeout(() => { el.textContent = ''; }, 2000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const saveBtn = document.getElementById('save-btn');
+    const loadBtn = document.getElementById('load-btn');
+    if (saveBtn) {
+        saveBtn.addEventListener('click', function() {
+            const state = getCurrentAcronymState();
+            localStorage.setItem('acronymBuilderSaved', JSON.stringify(state));
+            showSaveLoadMessage('Acronym saved!');
+        });
+    }
+    if (loadBtn) {
+        loadBtn.addEventListener('click', function() {
+            const state = localStorage.getItem('acronymBuilderSaved');
+            if (state) {
+                setAcronymState(JSON.parse(state));
+                showSaveLoadMessage('Acronym loaded!');
+            } else {
+                showSaveLoadMessage('No saved acronym found.');
+            }
+        });
+    }
+});
