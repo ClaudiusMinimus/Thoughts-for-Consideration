@@ -250,8 +250,9 @@ hr {
 }
 .phrase-edit:focus {
     border-color: #3498db;
-    outline: none;
+    outline: 2.5px solid #1976d2;
     background: #fff;
+    box-shadow: 0 0 0 3px #90caf955;
 }
 .reset-phrase-btn {
     margin-top: 4px;
@@ -284,6 +285,18 @@ hr {
     color: #aaa;
     border: 1px solid #ccc;
 }
+.reset-phrase-btn:focus {
+    outline: 2.5px solid #1976d2;
+    box-shadow: 0 0 0 3px #90caf955;
+    border-color: #3498db;
+    background: #e3f2fd;
+}
+.title-dropdown:focus {
+    outline: 2.5px solid #1976d2;
+    box-shadow: 0 0 0 3px #90caf955;
+    border-color: #3498db;
+    background: #e3f2fd;
+}
 .highlight-phrase-entry {
     background: #fffbe6;
     border: 2px solid #ffd54f;
@@ -295,4 +308,42 @@ hr {
     border: 2px solid transparent;
     border-radius: 6px;
     transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.undo-phrase-btn, .redo-phrase-btn {
+    margin-top: 4px;
+    margin-bottom: 10px;
+    margin-left: 6px;
+    padding: 6px 10px;
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #bfc9d1;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    display: inline-block;
+    vertical-align: middle;
+}
+.undo-phrase-btn:hover, .redo-phrase-btn:hover {
+    background-color: #f5f5f5;
+    border-color: #3498db;
+    color: #222;
+}
+.undo-phrase-btn:focus, .redo-phrase-btn:focus {
+    outline: 2.5px solid #1976d2;
+    box-shadow: 0 0 0 3px #90caf955;
+    border-color: #3498db;
+    background: #e3f2fd;
+}
+.undo-phrase-btn:disabled, .redo-phrase-btn:disabled {
+    background-color: #e0e0e0;
+    color: #aaa;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.undo-phrase-btn:disabled:hover, .redo-phrase-btn:disabled:hover {
+    background-color: #e0e0e0;
+    color: #aaa;
+    border: 1px solid #ccc;
 }

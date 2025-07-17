@@ -121,6 +121,8 @@ function switchLetterPhrase(letter, selectedSet, index) {
             if (phraseTextarea) {
                 phraseTextarea.value = newData.Phrase;
                 autoResizeTextarea(phraseTextarea);
+                initPhraseHistory(index, newData.Phrase);
+                updateUndoRedoButtons(index);
             }
             // Update the dropdown to reflect the new selection
             const dropdown = entry.querySelector('.title-dropdown');
@@ -160,6 +162,8 @@ function resetPhrase(letter, index) {
         if (textarea && phraseData) {
             textarea.value = phraseData.Phrase;
             autoResizeTextarea(textarea);
+            initPhraseHistory(index, phraseData.Phrase);
+            updateUndoRedoButtons(index);
             const resetBtn = document.getElementById(`reset-btn-${index}`);
             if (resetBtn) resetBtn.disabled = true;
         }
@@ -223,7 +227,9 @@ function showPhrases(event) {
                             output += `<div class=\"phrase-reference\">${phraseData.Reference}</div>`;
                         }
                     }
-                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" rows=\"3\" style=\"width:100%;resize:vertical;\" oninput=\"checkResetButton(${phraseEntryIndex}, '${letter}');autoResizeTextarea(this)\" aria-label=\"Phrase for letter ${phraseData.Letter}\">${phraseData.Phrase.replace(/\"/g, '&quot;')}</textarea>`;
+                    output += `<textarea class=\"phrase-edit\" data-index=\"${phraseEntryIndex}\" data-letter=\"${phraseData.Letter}\" rows=\"3\" style=\"width:100%;resize:vertical;\" oninput=\"checkResetButton(${phraseEntryIndex}, '${letter}');autoResizeTextarea(this);pushUndo(${phraseEntryIndex}, this.value);updateUndoRedoButtons(${phraseEntryIndex})\" aria-label=\"Phrase for letter ${phraseData.Letter}\" onkeydown=\"handleUndoRedoKey(event, ${phraseEntryIndex})\">${phraseData.Phrase.replace(/\"/g, '&quot;')}</textarea>`;
+                    output += `<button type=\"button\" class=\"undo-phrase-btn\" id=\"undo-btn-${phraseEntryIndex}\" onclick=\"undoPhrase(${phraseEntryIndex})\" title=\"Undo\" disabled aria-label=\"Undo for letter ${phraseData.Letter}\">⎌</button>`;
+                    output += `<button type=\"button\" class=\"redo-phrase-btn\" id=\"redo-btn-${phraseEntryIndex}\" onclick=\"redoPhrase(${phraseEntryIndex})\" title=\"Redo\" disabled aria-label=\"Redo for letter ${phraseData.Letter}\">↻</button>`;
                     output += `</div>`; // close phrase-entry-content
                     output += `<button type=\"button\" class=\"reset-phrase-btn\" id=\"reset-btn-${phraseEntryIndex}\" onmouseover=\"highlightPhraseEntry(${phraseEntryIndex}, true)\" onmouseout=\"highlightPhraseEntry(${phraseEntryIndex}, false)\" onclick=\"resetPhrase('${letter}', ${phraseEntryIndex})\" disabled aria-label=\"Reset phrase for letter ${phraseData.Letter}\">Reset</button>`;
                     output += `</div>`;
@@ -243,9 +249,13 @@ function showPhrases(event) {
     document.getElementById('output').innerHTML = output;
     document.getElementById('download-section-above').style.display = '';
     document.getElementById('download-section-below').style.display = '';
-    // After rendering, auto-resize all textareas
+    // After rendering, initialize history and auto-resize all textareas
     setTimeout(() => {
-        document.querySelectorAll('.phrase-edit').forEach(autoResizeTextarea);
+        document.querySelectorAll('.phrase-edit').forEach((ta, i) => {
+            autoResizeTextarea(ta);
+            initPhraseHistory(ta.getAttribute('data-index'), ta.value);
+            updateUndoRedoButtons(ta.getAttribute('data-index'));
+        });
     }, 0);
 }
 
@@ -357,5 +367,74 @@ function autoResizeTextarea(textarea) {
     if (textarea) {
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 'px';
+    }
+}
+
+// Undo/Redo history for each phrase entry
+const phraseHistory = new Map(); // key: index, value: {undo: [], redo: []}
+
+function initPhraseHistory(index, initialValue) {
+    phraseHistory.set(index, { undo: [], redo: [], lastValue: initialValue });
+}
+
+function pushUndo(index, value) {
+    const hist = phraseHistory.get(index);
+    if (hist) {
+        hist.undo.push(hist.lastValue);
+        hist.lastValue = value;
+        hist.redo = [];
+    }
+}
+
+function doUndo(index, textarea) {
+    const hist = phraseHistory.get(index);
+    if (hist && hist.undo.length > 0) {
+        hist.redo.push(hist.lastValue);
+        const prev = hist.undo.pop();
+        hist.lastValue = prev;
+        textarea.value = prev;
+        autoResizeTextarea(textarea);
+        updateUndoRedoButtons(index);
+        checkResetButton(index, textarea.getAttribute('data-letter'));
+    }
+}
+
+function doRedo(index, textarea) {
+    const hist = phraseHistory.get(index);
+    if (hist && hist.redo.length > 0) {
+        hist.undo.push(hist.lastValue);
+        const next = hist.redo.pop();
+        hist.lastValue = next;
+        textarea.value = next;
+        autoResizeTextarea(textarea);
+        updateUndoRedoButtons(index);
+        checkResetButton(index, textarea.getAttribute('data-letter'));
+    }
+}
+
+function updateUndoRedoButtons(index) {
+    const undoBtn = document.getElementById(`undo-btn-${index}`);
+    const redoBtn = document.getElementById(`redo-btn-${index}`);
+    const hist = phraseHistory.get(index);
+    if (undoBtn && hist) undoBtn.disabled = hist.undo.length === 0;
+    if (redoBtn && hist) redoBtn.disabled = hist.redo.length === 0;
+}
+
+// Add undo/redo handlers
+function undoPhrase(index) {
+    const textarea = document.querySelector(`.phrase-edit[data-index='${index}']`);
+    if (textarea) doUndo(index, textarea);
+}
+function redoPhrase(index) {
+    const textarea = document.querySelector(`.phrase-edit[data-index='${index}']`);
+    if (textarea) doRedo(index, textarea);
+}
+function handleUndoRedoKey(e, index) {
+    if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        undoPhrase(index);
+    } else if (((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 'y' || (e.shiftKey && e.key.toLowerCase() === 'z')))) {
+        e.preventDefault();
+        redoPhrase(index);
     }
 }
