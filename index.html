@@ -6,6 +6,7 @@
     <title>Personal Name Acronym Builder</title>
     <meta name="description" content="A web app to generate personalized name acronyms based on Christian principles and virtues, using Jim Subashe's original phrase set and phrase sets using the Topical Guide of The Church of Jesus Christ of Latter-day Saints.">
     <link rel="stylesheet" href="assets/styles.css"> <!-- Updated path -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
     <h1>Personal Name Acronym Builder</h1>
@@ -39,16 +40,18 @@
         <label style="font-weight: bold;">Download Phrase Set:</label>
         <button id="download-csv-above" onclick="downloadPhrases('csv')">Download CSV</button>
         <button id="download-txt-above" onclick="downloadPhrases('txt')">Download TXT</button>
-        <button id="download-odt-above" disabled>Download ODT (coming soon)</button>
-        <button id="download-docx-above" disabled>Download DOCX (coming soon)</button>
+        <button id="download-odt-above" onclick="downloadPhrases('odt')">Download ODT</button>
+        <button id="download-docx-above" onclick="downloadPhrases('docx')">Download DOCX</button>
+        <button id="download-svg-above" onclick="downloadPhrases('svg')">Download SVG</button>
     </div>
     <div id="output"></div>
     <div id="download-section-below" style="display:none">
         <label style="font-weight: bold;">Download Phrase Set:</label>
         <button id="download-csv-below" onclick="downloadPhrases('csv')">Download CSV</button>
         <button id="download-txt-below" onclick="downloadPhrases('txt')">Download TXT</button>
-        <button id="download-odt-below" disabled>Download ODT (coming soon)</button>
-        <button id="download-docx-below" disabled>Download DOCX (coming soon)</button>
+        <button id="download-odt-below" onclick="downloadPhrases('odt')">Download ODT</button>
+        <button id="download-docx-below" onclick="downloadPhrases('docx')">Download DOCX</button>
+        <button id="download-svg-below" onclick="downloadPhrases('svg')">Download SVG</button>
     </div>
 
     <footer style="margin-top:2em; font-size:0.95em; text-align:center;">

@@ -451,6 +451,39 @@ function downloadPhrases(format) {
             URL.revokeObjectURL(url);
         });
     }
+    else if (format === 'svg') {
+        // SVG export
+        const inputName = document.getElementById('wordInput').value.trim();
+        const filename = (inputName || 'phrases').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '') || 'phrases';
+        const phraseEntries = document.querySelectorAll('.phrase-entry');
+        const entries = [];
+        phraseEntries.forEach(entry => {
+            const letter = entry.querySelector('.letter')?.textContent || '';
+            const title = entry.querySelector('.phrase-title')?.textContent || '';
+            const referenceLink = entry.querySelector('.phrase-reference a');
+            let reference = '';
+            let referenceURL = '';
+            if (referenceLink) {
+                reference = referenceLink.textContent;
+                referenceURL = referenceLink.getAttribute('href');
+            } else {
+                reference = entry.querySelector('.phrase-reference')?.textContent || '';
+                referenceURL = '';
+            }
+            const phrase = entry.querySelector('.phrase-edit')?.value || '';
+            entries.push({ letter, title, reference, phrase, referenceURL });
+        });
+        const svgString = generateSVG(entries);
+        const blob = new Blob([svgString], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${filename}.svg`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
     // TXT, ODT, DOCX: not implemented yet
 }
 
@@ -678,4 +711,35 @@ function escapeXml(str) {
             case "'": return '&apos;';
         }
     });
+}
+
+const SVG_ENTRY_HEIGHT = 180;
+const SVG_WIDTH = 600;
+const SVG_TEMPLATE = `<svg width="${SVG_WIDTH}" height="${SVG_ENTRY_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#fff"/>
+  <text x="30" y="40" font-size="32" font-weight="bold" fill="#2c3e50">{Letter}</text>
+  <text x="80" y="40" font-size="24" font-weight="bold" fill="#1976d2">{Title}</text>
+  <text x="30" y="80" font-size="18" fill="#7f8c8d">{Reference}</text>
+  <text x="30" y="110" font-size="16" fill="#444">{Phrase}</text>
+  <text x="30" y="150" font-size="14" fill="#3498db">{ReferenceURL}</text>
+</svg>`;
+
+function generateSVG(entries) {
+    // Stack each entry vertically
+    const totalHeight = SVG_ENTRY_HEIGHT * entries.length;
+    let svgContent = `<svg width="${SVG_WIDTH}" height="${totalHeight}" xmlns="http://www.w3.org/2000/svg">\n<rect width='100%' height='100%' fill='#fff'/>\n`;
+    entries.forEach((entry, i) => {
+        // Replace placeholders in template
+        let entrySVG = SVG_TEMPLATE
+            .replace(/<svg[^>]*>|<\/svg>/g, '') // Remove svg wrapper
+            .replace('{Letter}', escapeXml(entry.letter))
+            .replace('{Title}', escapeXml(entry.title))
+            .replace('{Reference}', escapeXml(entry.reference))
+            .replace('{Phrase}', escapeXml(entry.phrase))
+            .replace('{ReferenceURL}', escapeXml(entry.referenceURL));
+        // Offset group
+        svgContent += `<g transform='translate(0,${i * SVG_ENTRY_HEIGHT})'>${entrySVG}</g>\n`;
+    });
+    svgContent += '</svg>';
+    return svgContent;
 }
