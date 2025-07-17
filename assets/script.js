@@ -320,6 +320,46 @@ function downloadPhrases(format) {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
+    else if (format === 'txt') {
+        // Get the entered name and format it for filename
+        const inputName = document.getElementById('wordInput').value.trim();
+        const filename = inputName
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, '_')
+            .replace(/_+/g, '_')
+            .replace(/^_|_$/g, '')
+            || 'phrases';
+        // Gather the current phrase set (with per-letter overrides if any)
+        const phraseEntries = document.querySelectorAll('.phrase-entry');
+        let txtContent = '';
+        phraseEntries.forEach(entry => {
+            const letter = entry.querySelector('.letter')?.textContent || '';
+            const title = entry.querySelector('.phrase-title')?.textContent || '';
+            const referenceLink = entry.querySelector('.phrase-reference a');
+            let reference = '';
+            let referenceURL = '';
+            if (referenceLink) {
+                reference = referenceLink.textContent;
+                referenceURL = referenceLink.getAttribute('href');
+            } else {
+                reference = entry.querySelector('.phrase-reference')?.textContent || '';
+                referenceURL = '';
+            }
+            const phrase = entry.querySelector('.phrase-edit')?.value || '';
+            txtContent += `Letter: ${letter}\nTitle: ${title}\nReference: ${reference}\nPhrase: ${phrase}\nReferenceURL: ${referenceURL}\n\n`;
+        });
+        // Download
+        const blob = new Blob([txtContent], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${filename}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
     // TXT, ODT, DOCX: not implemented yet
 }
 
