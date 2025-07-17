@@ -272,6 +272,18 @@ hr {
     border-color: #3498db;
     color: #222;
 }
+.reset-phrase-btn:disabled {
+    background-color: #e0e0e0;
+    color: #aaa;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.reset-phrase-btn:disabled:hover {
+    background-color: #e0e0e0;
+    color: #aaa;
+    border: 1px solid #ccc;
+}
 .highlight-phrase-entry {
     background: #fffbe6;
     border: 2px solid #ffd54f;
